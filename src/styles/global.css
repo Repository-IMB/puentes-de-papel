@@ -30,3 +30,13 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Tipografías literarias y manuscritas */
+.font-serif-literary {
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+.font-handwritten {
+  font-family: 'Caveat', cursive;
+}
+

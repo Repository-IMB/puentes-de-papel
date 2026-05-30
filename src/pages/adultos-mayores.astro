@@ -1,0 +1,656 @@
+---
+import '../styles/global.css';
+import { ArrowLeft, Heart, Send, Sparkles, BookOpen, Check } from 'lucide-astro';
+
+const title = 'Registrar a un Adulto Mayor - Puentes de Papel';
+const description = 'Inscribe a una persona mayor en el programa Puentes de Papel para conectarla con jóvenes voluntarios a través del cariñoso intercambio de cartas.';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#A65F4C" />
+    
+    <!-- Import Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen" style="font-family: 'Nunito', sans-serif;">
+    
+    <!-- Top Navigation / Back button -->
+    <header class="container mx-auto px-6 py-8">
+      <a href="/" class="inline-flex items-center gap-2 text-[#A65F4C] hover:text-[#DD8574] font-bold text-lg transition-colors group">
+        <ArrowLeft class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
+        Volver al inicio
+      </a>
+    </header>
+
+    <main class="container mx-auto px-6 pb-24 max-w-3xl">
+      <!-- Page Header -->
+      <div class="text-center mb-12">
+        <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-6 text-amber-600">
+          <BookOpen class="w-8 h-8" />
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+          Registrar a un adulto mayor
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+          Abre una ventana de compañía y alegría. Este registro puede ser completado por un familiar, cuidador/a o el referente de una residencia.
+        </p>
+      </div>
+
+      <!-- Form Card Container -->
+      <div class="bg-white rounded-[2.5rem] p-5 pt-8 md:p-12 shadow-sm border border-slate-100/80 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#A65F4C] to-[#DD8574]"></div>
+
+        <!-- Progress Steps -->
+        <div id="progress-container" class="flex justify-between items-center mb-12 relative max-w-md mx-auto">
+          <!-- Connector line -->
+          <div class="absolute left-0 right-0 top-1/2 h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+          <div id="progress-bar" class="absolute left-0 top-1/2 h-0.5 bg-[#A65F4C] -translate-y-1/2 z-0 transition-all duration-300" style="width: 0%;"></div>
+
+          <!-- Step 1 -->
+          <div class="step-node relative z-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#A65F4C] text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-[#F2EADD]">1</div>
+            <span class="text-xs font-bold text-[#A65F4C] mt-2">Identidad</span>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-node relative z-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-white text-slate-400 border-2 border-slate-200 font-bold flex items-center justify-center transition-all duration-300">2</div>
+            <span class="text-xs font-bold text-slate-400 mt-2">Autonomía</span>
+          </div>
+          <!-- Step 3 -->
+          <div class="step-node relative z-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-white text-slate-400 border-2 border-slate-200 font-bold flex items-center justify-center transition-all duration-300">3</div>
+            <span class="text-xs font-bold text-slate-400 mt-2">Preferencias</span>
+          </div>
+        </div>
+
+        <!-- The Form -->
+        <form id="form-adultos-mayores" class="space-y-8" data-script-url={import.meta.env.PUBLIC_APPS_SCRIPT_URL}>
+          
+          <!-- STEP 1: Identidad y Contacto -->
+          <div id="step-1" class="form-step space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <span class="text-[#A65F4C]">1.</span> Identidad y Contacto
+            </h2>
+
+            <div>
+              <label for="nombreCompleto" class="block text-slate-700 font-bold mb-2">Nombre y Apellido del adulto mayor *</label>
+              <input type="text" id="nombreCompleto" name="nombreCompleto" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Nombre completo" />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="edad" class="block text-slate-700 font-bold mb-2">Edad *</label>
+                <input type="number" id="edad" name="edad" required min="50" max="120" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: 82" />
+              </div>
+
+              <div>
+                <label for="fechaNacimiento" class="block text-slate-700 font-bold mb-2">Fecha de nacimiento *</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" />
+              </div>
+            </div>
+
+            <div>
+              <span class="block text-slate-700 font-bold mb-3">Género *</span>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-4 cursor-pointer transition-colors">
+                  <input type="radio" name="genero" value="Femenino" required class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">Femenino</span>
+                </label>
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-4 cursor-pointer transition-colors">
+                  <input type="radio" name="genero" value="Masculino" class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">Masculino</span>
+                </label>
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-4 cursor-pointer transition-colors">
+                  <input type="radio" name="genero" value="Prefiere no decir" class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">Prefiere no decir</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="telefono" class="block text-slate-700 font-bold mb-2">Número de teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Número de contacto directo" />
+              </div>
+
+              <div>
+                <label for="correo" class="block text-slate-700 font-bold mb-2">Correo electrónico <span class="text-slate-400 font-medium">(Opcional)</span></label>
+                <input type="email" id="correo" name="correo" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="si tiene correo..." />
+              </div>
+            </div>
+
+            <div>
+              <span class="block text-slate-700 font-bold mb-3">¿Cuenta con un familiar o responsable de contacto? *</span>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                  <input type="radio" name="tieneContactoFamiliar" value="Sí" required class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">Sí</span>
+                </label>
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                  <input type="radio" name="tieneContactoFamiliar" value="No" class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">No</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="contacto-familiar-fields" class="hidden space-y-6 pt-6 border-t border-slate-100">
+              <h3 class="text-xl font-bold text-slate-900">Datos del familiar o responsable</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="contactoFamiliarNombre" class="block text-slate-700 font-bold mb-2">Nombre completo del familiar *</label>
+                  <input type="text" id="contactoFamiliarNombre" name="contactoFamiliarNombre" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Nombre y apellido" />
+                </div>
+                <div>
+                  <label for="contactoFamiliarTelefono" class="block text-slate-700 font-bold mb-2">Teléfono / WhatsApp *</label>
+                  <input type="tel" id="contactoFamiliarTelefono" name="contactoFamiliarTelefono" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: +51 987 654 321" />
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6 pt-6 border-t border-slate-100">
+              <h3 class="text-xl font-bold text-slate-900">Datos de la Institución o Residencia</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                  <label for="institucion" class="block text-slate-700 font-bold mb-2">Nombre de la Residencia / Institución *</label>
+                  <input type="text" id="institucion" name="institucion" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: Residencia Santa Rita" />
+                </div>
+                
+                <div>
+                  <label for="referenteNombre" class="block text-slate-700 font-bold mb-2">Nombre del referente en la institución *</label>
+                  <input type="text" id="referenteNombre" name="referenteNombre" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Persona a cargo del acompañamiento" />
+                </div>
+                <div>
+                  <label for="referenteRol" class="block text-slate-700 font-bold mb-2">Rol del referente *</label>
+                  <input type="text" id="referenteRol" name="referenteRol" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: Terapeuta, Director/a, Cuidador/a" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 flex justify-end">
+              <button type="button" class="btn-next w-full sm:w-auto bg-[#A65F4C] text-white font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-0.5 transition-all cursor-pointer">
+                Siguiente paso
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Autonomía y Apoyo -->
+          <div id="step-2" class="form-step hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <span class="text-[#A65F4C]">2.</span> Autonomía y Necesidades de Apoyo
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <span class="block text-slate-700 font-bold mb-3">¿La persona mayor puede leer por sí misma? *</span>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeLeer" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Sí, lee de forma independiente</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeLeer" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">No, necesita que le lean</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeLeer" value="A veces" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">A veces (depende del tamaño de letra)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <span class="block text-slate-700 font-bold mb-3">¿Puede escribir por sí misma? *</span>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeEscribir" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Sí, escribe de forma manuscrita</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeEscribir" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">No, necesita dictar la carta</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                    <input type="radio" name="puedeEscribir" value="Con ayuda" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Con ayuda (guía o transcripción física)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <span class="block text-slate-700 font-bold mb-3">¿La institución/familia puede asistir en lectura y escritura? *</span>
+                <div class="flex gap-4">
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                    <input type="radio" name="asistenciaLecturaEscritura" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700">Sí</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                    <input type="radio" name="asistenciaLecturaEscritura" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700">No</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <span class="block text-slate-700 font-bold mb-3">Frecuencia de acompañamiento disponible *</span>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3 cursor-pointer transition-colors">
+                    <input type="radio" name="frecuenciaAcompanamiento" value="Siempre" required class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Siempre que se necesite</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3 cursor-pointer transition-colors">
+                    <input type="radio" name="frecuenciaAcompanamiento" value="Ocasionalmente" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Ocasionalmente (tiempo limitado)</span>
+                  </label>
+                  <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3 cursor-pointer transition-colors">
+                    <input type="radio" name="frecuenciaAcompanamiento" value="Solo caso necesario" class="w-5 h-5 text-[#A65F4C]" />
+                    <span class="font-semibold text-slate-700 text-sm">Solo en caso de extrema necesidad</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-6 space-y-6">
+              <h3 class="font-bold text-slate-900 text-lg">Predisposición al Programa</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <span class="block text-slate-700 font-bold mb-3">¿Está interesada en participar del programa? *</span>
+                  <div class="space-y-2">
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3 cursor-pointer transition-colors">
+                      <input type="radio" name="interesPersona" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Sí, manifiesta mucho interés</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="interesPersona" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">No / Indiferente</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="interesPersona" value="A confirmar" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">A confirmar (tenemos que consultarle)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-slate-700 font-bold mb-3">¿Le gustaría recibir cartas de una persona joven? *</span>
+                  <div class="space-y-2">
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3 cursor-pointer transition-colors">
+                      <input type="radio" name="deseoCartasJoven" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Sí</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="deseoCartasJoven" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">No</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="deseoCartasJoven" value="No está seguro/a" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">No está seguro/a todavía</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <span class="block text-slate-700 font-bold mb-3">¿Podría participar de un intercambio mensual? *</span>
+                  <div class="flex flex-col gap-2">
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="intercambioMensual" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Sí, sin inconvenientes</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="intercambioMensual" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">No es viable</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="intercambioMensual" value="Depende" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Depende de su salud / estado físico</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-slate-700 font-bold mb-3">¿Le gusta escribir o recibir cartas? *</span>
+                  <div class="flex flex-col gap-2">
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="gustoPorCartas" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Sí, le encanta / añora esa época</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="gustoPorCartas" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">No especialmente</span>
+                    </label>
+                    <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-3.5 cursor-pointer transition-colors">
+                      <input type="radio" name="gustoPorCartas" value="Nunca lo hizo" class="w-5 h-5 text-[#A65F4C]" />
+                      <span class="font-semibold text-slate-700 text-sm">Nunca lo hizo, pero le entusiasma probar</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between gap-4">
+              <button type="button" class="btn-prev border-2 border-slate-200 text-slate-500 font-bold px-8 py-4 rounded-full hover:bg-slate-50 transition-all cursor-pointer">
+                Atrás
+              </button>
+              <button type="button" class="btn-next bg-[#A65F4C] text-white font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-0.5 transition-all cursor-pointer">
+                Siguiente paso
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Preferencias e Historias -->
+          <div id="step-3" class="form-step hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <span class="text-[#A65F4C]">3.</span> Preferencias y Consentimiento
+            </h2>
+
+            <div>
+              <label for="temasDisfruta" class="block text-slate-700 font-bold mb-2">Temas que disfruta o le interesa compartir *</label>
+              <textarea id="temasDisfruta" name="temasDisfruta" required rows="3" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800 resize-none" placeholder="Ej: anécdotas de juventud, cocina familiar, recuerdos del barrio, música clásica, manualidades, fútbol..."></textarea>
+            </div>
+
+            <div>
+              <label for="temasEvitar" class="block text-slate-700 font-bold mb-2">¿Hay algún tema que debería evitarse? <span class="text-slate-400 font-medium">(Opcional)</span></label>
+              <input type="text" id="temasEvitar" name="temasEvitar" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Cualquier asunto que le cause angustia o tristeza" />
+            </div>
+
+            <div>
+              <label for="situacionEmocional" class="block text-slate-700 font-bold mb-2">¿Hay alguna situación emocional o tema sensible que deba tenerse en cuenta para el vínculo? <span class="text-slate-400 font-medium">(Opcional)</span></label>
+              <textarea id="situacionEmocional" name="situacionEmocional" rows="3" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800 resize-none" placeholder="Ej: padece pérdidas de memoria recientes, atraviesa un duelo reciente, estados de ánimo variables..."></textarea>
+            </div>
+
+            <div>
+              <span class="block text-slate-700 font-bold mb-3">¿Cuenta con consentimiento informado para participar del programa? *</span>
+              <p class="text-xs text-slate-500 mb-3">Para participar, el adulto mayor (o su tutor legal) debe manifestar explícitamente estar de acuerdo con el intercambio.</p>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                  <input type="radio" name="consentimiento" value="Sí" required class="w-5 h-5 text-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">Sí, contamos con su consentimiento</span>
+                </label>
+                <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-6 py-4 cursor-pointer transition-colors flex-1">
+                  <input type="radio" name="consentimiento" value="No" class="w-5 h-5 text-[#A65F4C]" />
+                  <span class="font-semibold text-slate-700">No todavía / En trámite</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between gap-4">
+              <button type="button" class="btn-prev border-2 border-slate-200 text-slate-500 font-bold px-8 py-4 rounded-full hover:bg-slate-50 transition-all cursor-pointer">
+                Atrás
+              </button>
+              <button type="submit" class="bg-amber-400 text-[#3B1E16] font-bold px-10 py-4.5 rounded-full hover:bg-amber-300 hover:-translate-y-0.5 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                Registrar adulto mayor
+                <Send class="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success View (Hidden initially) -->
+        <div id="success-view" class="hidden text-center py-12 space-y-8 animate-fade-in">
+          <div class="w-24 h-24 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-500 relative">
+            <div class="absolute inset-0 rounded-full bg-emerald-200 animate-ping opacity-45"></div>
+            <Check class="w-12 h-12 relative z-10" />
+          </div>
+          
+          <div class="space-y-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
+              ¡Registro completado!
+            </h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+              Hemos registrado correctamente a <strong id="success-adult-name" class="text-[#A65F4C]"></strong> en el proyecto Puentes de Papel.
+            </p>
+            <div class="p-6 bg-[#FCF9F5] border border-orange-100 rounded-3xl max-w-lg mx-auto text-left space-y-3 mt-8">
+              <h4 class="font-bold text-[#A65F4C] text-lg flex items-center gap-2">
+                <Sparkles class="w-5 h-5 text-amber-500 fill-amber-400" />
+                ¿Cómo sigue el proceso?
+              </h4>
+              <p class="text-slate-600 text-base leading-relaxed">
+                <strong>Mateo Rodríguez</strong>, de nuestro equipo de Logística, analizará los datos de contacto y la información del referente para coordinar el envío y recepción del primer sobre de cartas. Nos pondremos en contacto por teléfono o WhatsApp muy pronto. ¡Muchas gracias por tender este puente!
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-8">
+            <a href="/" class="inline-flex bg-slate-100 hover:bg-[#F2EADD]/40 hover:text-[#A65F4C] text-slate-700 font-bold px-8 py-4 rounded-full transition-all">
+              Volver al inicio
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Simple client-side controller for step wizard and success message -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('form-adultos-mayores');
+        const steps = Array.from(document.querySelectorAll('.form-step'));
+        const nextButtons = document.querySelectorAll('.btn-next');
+        const prevButtons = document.querySelectorAll('.btn-prev');
+        const successView = document.getElementById('success-view');
+        const progressNodes = document.querySelectorAll('.step-node div');
+        const progressLabels = document.querySelectorAll('.step-node span');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentStepIdx = 0;
+
+        // Toggle familiar contact fields based on radio selection
+        const tieneContactoFamiliarRadios = form.querySelectorAll('input[name="tieneContactoFamiliar"]');
+        const contactoFamiliarFields = document.getElementById('contacto-familiar-fields');
+        const contactoNombreInput = document.getElementById('contactoFamiliarNombre');
+        const contactoTelefonoInput = document.getElementById('contactoFamiliarTelefono');
+
+        if (tieneContactoFamiliarRadios.length > 0 && contactoFamiliarFields && contactoNombreInput && contactoTelefonoInput) {
+          tieneContactoFamiliarRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+              const selectedValue = form.querySelector('input[name="tieneContactoFamiliar"]:checked').value;
+              if (selectedValue === 'Sí') {
+                contactoFamiliarFields.classList.remove('hidden');
+                contactoNombreInput.required = true;
+                contactoTelefonoInput.required = true;
+              } else {
+                contactoFamiliarFields.classList.add('hidden');
+                contactoNombreInput.required = false;
+                contactoTelefonoInput.required = false;
+                contactoNombreInput.value = '';
+                contactoTelefonoInput.value = '';
+                // Clear validation highlights
+                contactoNombreInput.classList.remove('border-rose-400');
+                contactoNombreInput.classList.add('border-transparent');
+                contactoTelefonoInput.classList.remove('border-rose-400');
+                contactoTelefonoInput.classList.add('border-transparent');
+              }
+            });
+          });
+        }
+
+        const updateProgress = () => {
+          // Progress bar percentage
+          const percent = (currentStepIdx / (steps.length - 1)) * 100;
+          progressBar.style.width = `${percent}%`;
+
+          // Nodes styles
+          progressNodes.forEach((node, idx) => {
+            if (idx < currentStepIdx) {
+              node.className = 'w-10 h-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center shadow-md transition-all duration-300';
+              node.innerHTML = '✓';
+              progressLabels[idx].className = 'text-xs font-bold text-emerald-600 mt-2';
+            } else if (idx === currentStepIdx) {
+              node.className = 'w-10 h-10 rounded-full bg-[#A65F4C] text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-[#F2EADD]';
+              node.innerHTML = idx + 1;
+              progressLabels[idx].className = 'text-xs font-bold text-[#A65F4C] mt-2';
+            } else {
+              node.className = 'w-10 h-10 rounded-full bg-white text-slate-400 border-2 border-slate-200 font-bold flex items-center justify-center transition-all duration-300';
+              node.innerHTML = idx + 1;
+              progressLabels[idx].className = 'text-xs font-bold text-slate-400 mt-2';
+            }
+          });
+        };
+
+        const validateStep = (stepIdx) => {
+          const fields = steps[stepIdx].querySelectorAll('input[required], textarea[required], select[required]');
+          let isValid = true;
+          fields.forEach(field => {
+            if (field.type === 'radio') {
+              const name = field.name;
+              const checked = steps[stepIdx].querySelector(`input[name="${name}"]:checked`);
+              if (!checked) {
+                isValid = false;
+                const parent = field.closest('div');
+                if (parent) parent.classList.add('ring-2', 'ring-rose-300', 'rounded-2xl');
+              } else {
+                const parent = field.closest('div');
+                if (parent) parent.classList.remove('ring-2', 'ring-rose-300', 'rounded-2xl');
+              }
+            } else if (field.type === 'checkbox') {
+              if (!field.checked) {
+                isValid = false;
+                field.classList.add('ring-2', 'ring-rose-300');
+              } else {
+                field.classList.remove('ring-2', 'ring-rose-300');
+              }
+            } else {
+              if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('border-rose-400');
+                field.classList.remove('border-transparent');
+              } else {
+                field.classList.remove('border-rose-400');
+                field.classList.add('border-transparent');
+              }
+            }
+          });
+          return isValid;
+        };
+
+        nextButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (validateStep(currentStepIdx)) {
+              steps[currentStepIdx].classList.add('hidden');
+              currentStepIdx++;
+              steps[currentStepIdx].classList.remove('hidden');
+              updateProgress();
+              window.scrollTo({ top: 200, behavior: 'smooth' });
+            } else {
+              // Highlight missing fields
+              const firstInvalid = steps[currentStepIdx].querySelector('.border-rose-400, .ring-rose-300');
+              if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }
+          });
+        });
+
+        prevButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            steps[currentStepIdx].classList.add('hidden');
+            currentStepIdx--;
+            steps[currentStepIdx].classList.remove('hidden');
+            updateProgress();
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+          });
+        });
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (validateStep(currentStepIdx)) {
+            const nombreVal = document.getElementById('nombreCompleto').value;
+            
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-[#3B1E16] inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            `;
+
+            // Gather all form data
+            const formData = new FormData(form);
+            const fields = {};
+            
+            for (const [key, value] of formData.entries()) {
+              if (key === 'aceptacion') continue;
+              
+              if (fields[key]) {
+                if (!Array.isArray(fields[key])) {
+                  fields[key] = [fields[key]];
+                }
+                fields[key].push(value);
+              } else {
+                fields[key] = value;
+              }
+            }
+
+            // Format fechaNacimiento to LatAm format (dd/mm/yyyy)
+            if (fields['fechaNacimiento']) {
+              const parts = fields['fechaNacimiento'].split('-');
+              if (parts.length === 3) {
+                fields['fechaNacimiento'] = `${parts[2]}/${parts[1]}/${parts[0]}`;
+              }
+            }
+
+            const payload = {
+              sheetName: 'Adultos Mayores',
+              fields: fields
+            };
+
+            try {
+              const url = form.dataset.scriptUrl;
+              if (!url) {
+                throw new Error('La URL de Google Apps Script no está configurada. Por favor, crea un archivo .env con PUBLIC_APPS_SCRIPT_URL o configúrala en el formulario.');
+              }
+
+              await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                  'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(payload)
+              });
+
+              // Dado que usamos 'no-cors' para evitar bloqueos del navegador (como Brave Shields),
+              // no podemos leer el JSON de respuesta. Si el fetch no arrojó un error de red, asumimos éxito.
+              document.getElementById('progress-container').classList.add('hidden');
+              form.classList.add('hidden');
+              
+              // Set name in success view
+              document.getElementById('success-adult-name').innerText = nombreVal;
+              
+              // Show success view
+              successView.classList.remove('hidden');
+              window.scrollTo({ top: 150, behavior: 'smooth' });
+            } catch (err) {
+              console.error('Error al enviar:', err);
+              alert('Error al enviar el formulario: ' + err.message);
+              
+              // Restore button state
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnHtml;
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

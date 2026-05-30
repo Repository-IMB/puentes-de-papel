@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { Play, Heart, Users, MessageCircle, BookOpen, Star, Sparkles, ArrowRight, UserPlus, Send, Menu } from 'lucide-astro';
+import { Play, Heart, Users, MessageCircle, BookOpen, Star, Sparkles, ArrowRight, UserPlus, Send, Menu, Mail, Clock, PenTool, Building } from 'lucide-astro';
 
 const title = 'Puentes de Papel - Munay Ruray';
 const description = 'Conectando generaciones a través de historias y memorias. Puentes de Papel une a jóvenes voluntarios con personas mayores para compartir historias de vida, rescatar memorias y generar vínculos significativos.';
@@ -63,7 +63,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
     <!-- Import Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script is:inline>
       if (typeof window !== 'undefined') {
         window.addEventListener('DOMContentLoaded', () => {
@@ -104,6 +104,8 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               <div class="hidden md:flex gap-8 font-semibold text-slate-600">
                 <a href="#sobre-el-proyecto" class="hover:text-[#A65F4C] transition-colors">Sobre el proyecto</a>
                 <a href="#como-funciona" class="hover:text-[#A65F4C] transition-colors">¿Cómo funciona?</a>
+                <a href="#formas-de-participar" class="hover:text-[#A65F4C] transition-colors">Formas de participar</a>
+                <a href="#quienes-somos" class="hover:text-[#A65F4C] transition-colors">Quiénes somos</a>
               </div>
               <label
                 for="alternar-menu"
@@ -121,6 +123,12 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </a>
             <a href="#como-funciona" class="block px-2 py-2 rounded-xl font-semibold text-slate-700 hover:bg-[#F2EADD] hover:text-[#A65F4C] transition-colors">
               ¿Cómo funciona?
+            </a>
+            <a href="#formas-de-participar" class="block px-2 py-2 rounded-xl font-semibold text-slate-700 hover:bg-[#F2EADD] hover:text-[#A65F4C] transition-colors">
+              Formas de participar
+            </a>
+            <a href="#quienes-somos" class="block px-2 py-2 rounded-xl font-semibold text-slate-700 hover:bg-[#F2EADD] hover:text-[#A65F4C] transition-colors">
+              Quiénes somos
             </a>
           </nav>
         </header>
@@ -153,7 +161,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               </p>
               
               <div class="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-                <a href="#seccion-registro" class="cursor-pointer w-full sm:w-auto bg-[#A65F4C] text-white text-lg font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-1 transition-all duration-300">
+                <a href="#formas-de-participar" class="cursor-pointer w-full sm:w-auto bg-[#A65F4C] text-white text-lg font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-1 transition-all duration-300">
                   Descubre cómo participar
                 </a>
                 <a href="#como-funciona" class="cursor-pointer w-full sm:w-auto group flex items-center justify-center gap-3 text-slate-700 font-bold text-lg hover:text-[#A65F4C] transition-colors">
@@ -242,6 +250,155 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
         </div>
       </section>
 
+      <!-- --- Nuestra Esencia Section --- -->
+      <section class="py-24 bg-[#FCF9F5] border-y border-orange-100/50 relative sr-fade-up">
+        <!-- Subtle heart floating icon in the background -->
+        <div class="absolute -top-12 left-1/4 text-rose-200/30 pointer-events-none select-none">
+          <Heart class="w-24 h-24 fill-current" />
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-5xl">
+          <!-- Section Title -->
+          <div class="text-center mb-16">
+            <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Nuestra Alma</span>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mt-2 mb-4">
+              La esencia de Puentes de Papel
+            </h2>
+            <div class="w-16 h-1 bg-[#DD8574] rounded-full mx-auto"></div>
+          </div>
+          
+          <!-- Staggered Layered Letter Card for the Manifesto Quote -->
+          <div class="relative max-w-4xl mx-auto mb-20 sr-fade-up-delayed">
+            <!-- Background sheet 2 (deepest) -->
+            <div class="absolute inset-0 bg-[#F5EFE6] rounded-[2rem] shadow-sm transform -rotate-1.5 translate-y-1"></div>
+            <!-- Background sheet 1 (middle) -->
+            <div class="absolute inset-0 bg-[#FAF7F2] rounded-[2rem] shadow-md transform rotate-1 translate-y-0.5"></div>
+            
+            <!-- Main Letter Sheet (top) -->
+            <div class="relative bg-[#FDFDFB] rounded-[2rem] p-8 md:p-16 lg:p-20 shadow-xl border border-[#EBE3D5] transform rotate-[-0.5deg] overflow-hidden">
+              <!-- Vintage double line border framing the letter -->
+              <div class="absolute inset-3 border border-[#A65F4C]/15 pointer-events-none rounded-[1.8rem]"></div>
+              <div class="absolute inset-4 border border-dashed border-[#A65F4C]/10 pointer-events-none rounded-[1.7rem]"></div>
+              
+   
+              <!-- Big Letter Quote in Garamond serif -->
+              <div class="relative z-10 max-w-2xl mx-auto">
+                <span class="text-6xl font-serif-literary text-[#DD8574]/20 absolute -top-8 -left-8 md:-left-12 select-none">“</span>
+                <p class="font-serif-literary text-2xl md:text-3xl text-slate-800 leading-relaxed font-medium italic text-center text-pretty">
+                  Creemos en el poder de las palabras para acercar personas que, tal vez, nunca se hubieran encontrado. Puentes de Papel nace para transformar la distancia en compañía y las cartas en vínculos reales. En un mundo cada vez más rápido, apostamos por volver a mirar al otro con tiempo, escucha y humanidad.
+                </p>
+                <span class="text-6xl font-serif-literary text-[#DD8574]/20 absolute -bottom-16 -right-6 select-none">”</span>
+                
+                <!-- Separator line -->
+                <div class="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#A65F4C]/20 to-transparent mx-auto my-8"></div>
+                
+                <!-- Calligraphic signature and seal -->
+                <div class="flex items-center justify-between mt-6">
+                  <!-- Wax Seal Graphic / Medalla -->
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-[#A65F4C]/5 flex items-center justify-center border border-[#A65F4C]/10 text-[#A65F4C]">
+                      <Users class="w-5 h-5" />
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-slate-400 font-bold select-none">Manifiesto Colectivo</span>
+                  </div>
+                  
+                  <!-- Handwritten Signature -->
+                  <div class="text-right">
+                    <span class="font-handwritten text-4xl text-[#A65F4C] block select-none leading-none">
+                      Puentes de Papel
+                    </span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#DD8574] font-bold">
+                      Munay Ruray
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- The 6 Pillars (designed as clean cards matching the site's design language, with text-xl size) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Pillar 1 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Heart class="w-6 h-6 text-[#A65F4C] fill-[#A65F4C]/10" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Combatir la soledad</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">Creamos compañía en las horas silenciosas, llevando palabras que abrigan y acompañan.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Users class="w-6 h-6 text-amber-600" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Vínculos reales</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">No es un contacto efímero; es una relación de cariño y respeto que se siembra mes a mes.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <MessageCircle class="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">El valor de escuchar</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">Detenerse a oír con atención, rescatando la sabiduría que solo dan los años.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Sparkles class="w-6 h-6 text-rose-500" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Pequeños gestos</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">Una carta escrita a mano es un puente que demuestra que cada vida y cada historia importan.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 5 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Clock class="w-6 h-6 text-emerald-600" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Tiempo y cuidado</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">Promovemos un ritmo más humano en la comunicación, valorando la espera y la reflexión.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 6 -->
+            <div class="sr-fade-up-delayed">
+              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <PenTool class="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Memoria activa</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed">Escribir para atesorar, rescatando anécdotas, vivencias y saberes que trascienden el tiempo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- --- 3. How it Works Section --- -->
       <section id="como-funciona" class="py-24 bg-slate-50 relative overflow-hidden sr-fade-up">
         <!-- Decorative elements -->
@@ -291,11 +448,11 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
                 <div class="h-40 bg-[#F2EADD] flex items-center justify-center relative overflow-hidden">
                   <div class="absolute w-32 h-32 bg-[#DD8574]/40 rounded-full -right-10 -bottom-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
-                  <MessageCircle class="w-16 h-16 text-[#A65F4C] relative z-10" />
+                  <BookOpen class="w-16 h-16 text-[#A65F4C] relative z-10" />
                 </div>
                 <div class="p-8 text-center">
                   <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 3</h3>
-                  <p class="text-slate-600 font-medium text-xl">Se generan encuentros de conversación y escucha activa.</p>
+                  <p class="text-slate-600 font-medium text-lg leading-relaxed">Los voluntarios participan de una breve capacitación inicial sobre escucha, acompañamiento y el funcionamiento del proyecto.</p>
                 </div>
               </div>
             </div>
@@ -304,14 +461,98 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             <div class="sr-fade-up-delayed">
               <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
                 <div class="h-40 bg-emerald-100 flex items-center justify-center relative overflow-hidden">
-                <div class="absolute w-32 h-32 bg-emerald-200 rounded-full -left-10 -top-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
-                <BookOpen class="w-16 h-16 text-emerald-500 relative z-10" />
+                  <div class="absolute w-32 h-32 bg-emerald-200 rounded-full -left-10 -top-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
+                  <Mail class="w-16 h-16 text-emerald-500 relative z-10" />
                 </div>
                 <div class="p-8 text-center">
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 4</h3>
-                <p class="text-slate-600 font-medium text-xl">Las historias compartidas se transforman en relatos escritos.</p>
+                  <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 4</h3>
+                  <p class="text-slate-600 font-medium text-lg leading-relaxed">Comienza el intercambio de cartas entre los voluntarios y los adultos mayores, generando vínculos intergeneracionales a través de la escritura y el acompañamiento.</p>
+                </div>
               </div>
             </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- --- 3.5 Timeline: El ritmo del corazón Section --- -->
+      <section class="py-24 bg-white border-b border-slate-100/50 relative overflow-hidden sr-fade-up">
+        <!-- Subtle decorative floating elements -->
+        <div class="absolute top-20 left-10 text-orange-100/50 pointer-events-none select-none">
+          <Heart class="w-16 h-16" />
+        </div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+          <!-- Encabezado Emocional -->
+          <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">El ritmo del corazón</h2>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto font-light leading-relaxed">
+              Creemos en el valor de la paciencia. Aquí no hay inmediatez, hay construcción.
+            </p>
+          </div>
+
+          <div class="relative mt-16 max-w-5xl mx-auto">
+            <!-- Línea conectora (Desktop horizontal, Mobile vertical) -->
+            <div class="hidden md:block absolute top-12 left-16 right-16 h-[2px] bg-slate-100/80 z-0"></div>
+            
+            <div class="flex flex-col md:flex-row justify-between relative gap-12 md:gap-8 z-10">
+              <!-- Línea conectora exclusiva para mobile -->
+              <div class="md:hidden absolute left-10 top-10 bottom-10 w-[2px] bg-slate-100/80 z-0"></div>
+
+              <!-- Nodo 1: Primeras Cartas -->
+              <div class="group flex md:flex-col items-start md:items-center relative z-10 flex-1 sr-fade-up-delayed">
+                <div class="icon-container flex-shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl md:rounded-full shadow-sm flex items-center justify-center border border-slate-100 text-rose-500 mb-0 md:mb-8 ml-0 md:ml-auto mr-6 md:mr-auto z-10 transition-all duration-300 group-hover:bg-rose-50 group-hover:scale-105">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"></path>
+                    <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"></path>
+                    <path d="M12 14v.01" stroke-width="3" stroke="currentColor" class="text-rose-400"></path>
+                  </svg>
+                </div>
+                <div class="md:text-center mt-2 md:mt-0">
+                  <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-rose-500 transition-colors duration-300">Primeras cartas</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed md:px-4 font-light">
+                    El vínculo comienza a través de palabras, historias y pequeños gestos compartidos. Un primer hola que cruza generaciones.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Nodo 2: 6 meses -->
+              <div class="group flex md:flex-col items-start md:items-center relative z-10 flex-1 sr-fade-up-delayed">
+                <div class="icon-container flex-shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl md:rounded-full shadow-sm flex items-center justify-center border border-slate-100 text-emerald-600 mb-0 md:mb-8 ml-0 md:ml-auto mr-6 md:mr-auto z-10 transition-all duration-300 group-hover:bg-emerald-50 group-hover:scale-105">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    <path d="M19 5c-1.5 0-2.8 1.2-3 2.6-.2 1.5 1 2.9 2.5 2.9 1.5 0 2.8-1.2 3-2.6.2-1.5-1-2.9-2.5-2.9Z" fill="currentColor" class="text-emerald-100/50"></path>
+                  </svg>
+                </div>
+                <div class="md:text-center mt-2 md:mt-0">
+                  <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300">6 meses de compañía</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed md:px-4 font-light">
+                    La relación se construye lentamente mediante el intercambio continuo y la escucha mutua. Se forja la confianza y el afecto sincero.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Nodo 3: El encuentro -->
+              <div class="group flex md:flex-col items-start md:items-center relative z-10 flex-1 sr-fade-up-delayed">
+                <div class="icon-container flex-shrink-0 w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl md:rounded-full shadow-sm flex items-center justify-center border border-slate-100 text-[#C2823C] mb-0 md:mb-8 ml-0 md:ml-auto mr-6 md:mr-auto z-10 transition-all duration-300 group-hover:bg-amber-50 group-hover:scale-105">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    <path d="M14 11l.5.5c.3.3.8.3 1 0l.5-.5" class="text-rose-400" stroke-width="2"></path>
+                  </svg>
+                </div>
+                <div class="md:text-center mt-2 md:mt-0">
+                  <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-[#C2823C] transition-colors duration-300">El encuentro</h3>
+                  <p class="text-slate-600 text-xl leading-relaxed md:px-4 font-light">
+                    Los encuentros presenciales ocurren únicamente al finalizar el proceso, coronando meses de espera, dependiendo de cada caso y coordinación.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -387,6 +628,75 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
         </div>
       </section>
 
+      <!-- --- Quiénes Somos Section --- -->
+      <section id="quienes-somos" class="py-24 bg-white relative sr-fade-up">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <div class="text-center mb-16">
+            <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Quiénes somos</span>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mt-2 mb-4">
+              El equipo detrás de las cartas
+            </h2>
+            <div class="w-24 h-1.5 bg-[#DD8574] rounded-full mx-auto"></div>
+          </div>
+
+          <!-- Fundadora Card -->
+          <div class="bg-[#F2EADD]/35 rounded-[3rem] border border-[#A65F4C]/5 p-8 md:p-16 mb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-8 border-white shadow-md">
+              <img src="/images/sofia-martinez.png" alt="Sofía Martínez - Fundadora de Puentes de Papel" class="w-full h-full object-cover" />
+            </div>
+            <div class="text-left flex-1">
+              <span class="bg-[#A65F4C]/10 text-[#A65F4C] text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider">Fundadora y Directora</span>
+              <h3 class="text-3xl font-extrabold text-slate-900 mt-3 mb-4">Sofía Martínez</h3>
+              <p class="text-lg text-slate-700 leading-relaxed font-light mb-6">
+                “Puentes de Papel nació en un invierno frío, cuando me di cuenta de cuánto añoraba las charlas tranquilas con mis abuelos. Empecé escribiendo una carta manuscrita a un hogar de ancianos cercano y vi cómo sus ojos se iluminaron al leerla. Supe entonces que una simple hoja de papel tenía el poder de derribar la soledad más profunda. Hoy, este proyecto es el reflejo de mi convicción de que las generaciones no deben vivir aisladas, sino abrazadas a través de la memoria y la ternura.”
+              </p>
+            </div>
+          </div>
+
+          <!-- Team Grid -->
+          <h4 class="text-2xl font-bold text-slate-950 mb-8 text-center">Nuestro equipo de coordinación</h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Member 1 -->
+            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
+                <img src="/images/valentina-gomez.png" alt="Valentina Gómez" class="w-full h-full object-cover" />
+              </div>
+              <h5 class="text-xl font-bold text-slate-900">Valentina Gómez</h5>
+              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Coordinación de Acompañamiento</p>
+              <p class="text-slate-600 text-lg leading-relaxed font-medium">
+                Asegura que cada voluntario se sienta preparado e inspirado, guiando el proceso humano y capacitando con empatía.
+              </p>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
+                <img src="/images/mateo-rodriguez.png" alt="Mateo Rodríguez" class="w-full h-full object-cover" />
+              </div>
+              <h5 class="text-xl font-bold text-slate-900">Mateo Rodríguez</h5>
+              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Logística e Intercambios</p>
+              <p class="text-slate-600 text-lg leading-relaxed font-medium">
+                El motor detrás de las cartas. Organiza las entregas y retiros, asegurando que cada sobre llegue a su destinatario.
+              </p>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
+                <img src="/images/gabriela-paz.png" alt="Gabriela Paz" class="w-full h-full object-cover" />
+              </div>
+              <h5 class="text-xl font-bold text-slate-900">Gabriela Paz</h5>
+              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Relaciones Institucionales</p>
+              <p class="text-slate-600 text-lg leading-relaxed font-medium">
+                Construye el lazo con residencias de mayores y sponsors, extendiendo los puentes del proyecto hacia nuevos horizontes.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <!-- --- 5. Value Proposition --- -->
       <section class="py-20 px-6 bg-white sr-fade-up">
         <div class="container mx-auto">
@@ -419,7 +729,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
       </section>
 
       <!-- --- 5. Final Call to Action --- -->
-      <section class="py-24 px-6 relative bg-white">
+      <section class="py-24 px-6 relative bg-white" id="formas-de-participar">
         <div class="container mx-auto">
           <div id="seccion-registro" class="bg-[#A65F4C] rounded-[3rem] p-8 md:p-24 text-center relative overflow-hidden">
             <!-- Background Decorations inside the CTA -->
@@ -435,21 +745,17 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               </p>
               <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="https://munayruray.com/unete/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/voluntarios"
                   class="bg-amber-400 text-[#3B1E16] text-lg md:text-xl font-bold px-8 md:px-10 py-4 md:py-5 rounded-full hover:bg-amber-300 hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-3"
                 >
-                  Unirme como voluntario
+                  Quiero ser voluntario/a
                   <Send class="w-5 h-5" />
                 </a>
                 <a
-                  href="https://munayruray.com/registrar-adulto-mayor/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/adultos-mayores"
                   class="bg-white text-[#A65F4C] text-lg md:text-xl font-bold px-8 md:px-10 py-4 md:py-5 rounded-full hover:bg-[#F2EADD] hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-3"
                 >
-                  Registrar a un adulto mayor
+                  Quiero participar como adulto mayor
                   <Send class="w-5 h-5" />
                 </a>
               </div>
