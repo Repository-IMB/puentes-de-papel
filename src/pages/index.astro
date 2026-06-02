@@ -1,11 +1,25 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 import { Play, Heart, Users, MessageCircle, BookOpen, Star, Sparkles, ArrowRight, UserPlus, Send, Menu, Mail, Clock, PenTool, Building } from 'lucide-astro';
 
 const title = 'Puentes de Papel - Munay Ruray';
 const description = 'Conectando generaciones a través de historias y memorias. Puentes de Papel une a jóvenes voluntarios con personas mayores para compartir historias de vida, rescatar memorias y generar vínculos significativos.';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-mayor-voluntaria.webp', Astro.site);
+
+const valores = [
+  { name: 'Empatía', icon: Heart },
+  { name: 'Escucha activa', icon: MessageCircle },
+  { name: 'Humanidad', icon: Sparkles },
+  { name: 'Comunidad', icon: Users },
+  { name: 'Respeto intergeneracional', icon: Clock },
+  { name: 'Acompañamiento', icon: UserPlus },
+  { name: 'Cercanía', icon: Send },
+  { name: 'Solidaridad', icon: Star },
+  { name: 'Compromiso social', icon: Building },
+  { name: 'Conexión humana', icon: BookOpen }
+];
 ---
 
 <!doctype html>
@@ -67,6 +81,18 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
     <script is:inline>
       if (typeof window !== 'undefined') {
         window.addEventListener('DOMContentLoaded', () => {
+          // Scroll progress indicator logic
+          const progress = document.getElementById('scroll-progress');
+          window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = winScroll / height;
+            if (progress) {
+              progress.style.transform = `scaleX(${scrolled})`;
+            }
+          });
+
+          // Reveal animations logic
           const observer = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
@@ -77,12 +103,12 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               });
             },
             {
-              threshold: 0.2,
+              threshold: 0.15,
             }
           );
 
           document
-            .querySelectorAll('.sr-fade-up, .sr-fade-up-delayed')
+            .querySelectorAll('.sr-fade-up, .sr-fade-up-delayed, .sr-stagger-item')
             .forEach((el) => observer.observe(el));
         });
       }
@@ -90,14 +116,17 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
   </head>
 
   <body>
+    <!-- Scroll Progress Tracker -->
+    <div class="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#A65F4C] via-[#DD8574] to-[#F2EADD] z-50 origin-left scale-x-0 transition-transform duration-75" id="scroll-progress"></div>
+
     <div class="min-h-screen font-sans text-slate-800 overflow-hidden" style="font-family: 'Nunito', sans-serif;">
       <div class="bg-[#F2EADD]">
         <!-- --- Navigation Bar (Optional but good for context) --- -->
-        <header class="container mx-auto px-6 py-6 relative z-10">
+        <header class="container mx-auto px-6 py-6 relative z-10 animate-slide-down">
           <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
               <div class="w-48 bg-transparent flex items-center justify-center">
-                <img src="/images/logo-horizontal.png" alt="Logo de Puentes de Papel" class="w-full h-full object-cover mix-blend-multiply" />
+                <Image src="/images/logo-horizontal.png" width={192} height={48} alt="Logo de Puentes de Papel" class="w-full h-full object-cover mix-blend-multiply" />
               </div>
             </div>
             <div class="flex items-center gap-4">
@@ -134,7 +163,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
         </header>
   
         <!-- --- 1. Hero Section --- -->
-        <section class="container mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32 relative sr-fade-up">
+        <section class="container mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32 relative animate-fade-slide-up">
           <!-- Decorative Background Blobs -->
           <div class="absolute top-0 left-0 w-96 h-96 bg-[#DD8574] rounded-full mix-blend-multiply filter blur-[128px] opacity-30"></div>
           <div class="absolute top-0 right-0 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-[128px] opacity-40"></div>
@@ -142,7 +171,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
           <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20 relative z-10">
             
             <!-- Left Column: Text -->
-            <div class="w-full md:w-1/2 flex flex-col items-start text-left sr-fade-up-delayed">
+            <div class="w-full md:w-1/2 flex flex-col items-start text-left animate-fade-slide-up" style="animation-delay: 150ms;">
               <div class="inline-flex items-center gap-2 bg-white border border-[#DD8574]/40 px-4 py-2 rounded-full mb-6">
                 <span class="flex h-2 w-2 rounded-full bg-[#A65F4C]"></span>
                 <span class="text-sm font-bold text-[#A65F4C] tracking-wide uppercase">Un proyecto de Munay Ruray</span>
@@ -161,7 +190,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               </p>
               
               <div class="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-                <a href="#formas-de-participar" class="cursor-pointer w-full sm:w-auto bg-[#A65F4C] text-white text-lg font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-1 transition-all duration-300">
+                <a href="#formas-de-participar" class="cursor-pointer w-full sm:w-auto bg-[#A65F4C] text-white text-lg font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-1 transition-all duration-300 btn-shine">
                   Descubre cómo participar
                 </a>
                 <a href="#como-funciona" class="cursor-pointer w-full sm:w-auto group flex items-center justify-center gap-3 text-slate-700 font-bold text-lg hover:text-[#A65F4C] transition-colors">
@@ -174,7 +203,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
   
             <!-- Right Column: Image/Illustration -->
-            <div class="w-full md:w-1/2 relative sr-fade-up-delayed">
+            <div class="w-full md:w-1/2 relative animate-hero-img-in" style="animation-delay: 300ms;">
               <!-- Floating decorative elements -->
               <div class="absolute -top-8 -left-8 bg-white border border-slate-100 p-3 rounded-2xl z-20">
                 <Sparkles class="w-8 h-8 text-amber-400" />
@@ -186,8 +215,10 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
               <!-- Main Image Masked -->
               <div class="relative rounded-[3rem] overflow-hidden border-8 border-white">
                 <div class="absolute inset-0 bg-[#A65F4C]/10 mix-blend-overlay z-10"></div>
-                <img 
+                <Image 
                   src="/images/puentes-de-papel-conversacion-parque-adulto-mayor-voluntaria.webp" 
+                  width={600}
+                  height={500}
                   alt="Un adulto mayor y una joven voluntaria conversan animadamente sentados en una banca de parque durante una sesión del proyecto Puentes de Papel"
                   title="Joven voluntaria conversando con adulto mayor en parque — Puentes de Papel"
                   aria-label="Encuentro intergeneracional al aire libre en el proyecto Puentes de Papel de Munay Ruray, donde jóvenes escuchan y acompañan a personas mayores en el rescate de sus memorias."
@@ -209,8 +240,10 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             <!-- Left Image -->
             <div class="w-full md:w-5/12 relative">
                <div class="absolute -inset-4 bg-amber-100 rounded-[3rem] transform rotate-3 z-0"></div>
-               <img 
+               <Image 
                  src="/images/puentes-de-papel-grupo-voluntarios-adultos-mayores-historias.webp" 
+                 width={500}
+                 height={450}
                  alt="Dos adultos mayores y dos jóvenes voluntarios reunidos alrededor de una mesa con papeles y libretas, compartiendo memorias en el proyecto Puentes de Papel"
                  title="Grupo de voluntarios y adultos mayores compartiendo historias en Puentes de Papel"
                  aria-label="Sesión grupal del proyecto Puentes de Papel de Munay Ruray, promoviendo el vínculo intergeneracional a través del diálogo, la escucha activa y la escritura colaborativa."
@@ -247,6 +280,67 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
           </div>
+
+          <!-- Misión y Visión Section -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
+            <!-- Misión Card -->
+            <div class="bg-[#FCF9F5] rounded-[2.5rem] p-10 md:p-12 border border-[#A65F4C]/5 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
+              <div class="absolute -right-20 -top-20 w-48 h-48 bg-[#A65F4C]/5 rounded-full filter blur-xl group-hover:scale-110 transition-transform duration-500"></div>
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#A65F4C]">
+                  <Send class="w-7 h-7" />
+                </div>
+                <h3 class="text-3xl font-black text-slate-900">Misión</h3>
+              </div>
+              <p class="text-xl text-slate-600 leading-relaxed font-light">
+                Generar vínculos intergeneracionales a través del intercambio de cartas, promoviendo la escucha, el acompañamiento emocional y la construcción de comunidades más humanas y conectadas.
+              </p>
+            </div>
+
+            <!-- Visión Card -->
+            <div class="bg-[#FCF9F5] rounded-[2.5rem] p-10 md:p-12 border border-[#A65F4C]/5 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
+              <div class="absolute -right-20 -top-20 w-48 h-48 bg-amber-100/30 rounded-full filter blur-xl group-hover:scale-110 transition-transform duration-500"></div>
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
+                  <Star class="w-7 h-7 fill-amber-600/10" />
+                </div>
+                <h3 class="text-3xl font-black text-slate-900">Visión</h3>
+              </div>
+              <p class="text-xl text-slate-600 leading-relaxed font-light">
+                Construir una red cada vez más grande de jóvenes, adultos mayores, residencias y organizaciones que crean en el poder de la empatía y el encuentro humano como herramientas para transformar realidades.
+              </p>
+            </div>
+          </div>
+
+          <!-- Valores Section -->
+          <div class="mt-20">
+            <div class="text-center max-w-xl mx-auto mb-12">
+              <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Lo que nos guía</span>
+              <h3 class="text-3xl md:text-4xl font-black text-slate-900 mt-2">Valores</h3>
+              <div class="w-16 h-1 bg-[#DD8574] rounded-full mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+              {valores.map((val, idx) => {
+                const IconComponent = val.icon;
+                return (
+                  <div class="relative bg-white border border-[#EBE3D5] rounded-xl p-8 hover:-translate-y-1.5 transition-all duration-300 shadow-[0_4px_12px_-4px_rgba(166,95,76,0.15)] hover:shadow-md hover:border-[#A65F4C]/30 group overflow-hidden sr-stagger-item" style={`transition-delay: ${idx * 65}ms;`}>
+                    <!-- Inner perforated stamp border -->
+                    <div class="absolute inset-2 border border-dashed border-[#A65F4C]/25 rounded-lg pointer-events-none"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                      <!-- Icon inside a postmark circle -->
+                      <div class="w-14 h-14 rounded-full border border-[#A65F4C]/15 bg-[#FCF9F5] flex items-center justify-center text-[#A65F4C] mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent class="w-7 h-7" />
+                      </div>
+                      <!-- Value Name -->
+                      <h4 class="font-extrabold text-slate-800 text-base md:text-lg leading-snug tracking-tight text-center">{val.name}</h4>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -260,9 +354,9 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
         <div class="container mx-auto px-6 max-w-5xl">
           <!-- Section Title -->
           <div class="text-center mb-16">
-            <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Nuestra Alma</span>
+            <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Nuestra esencia</span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mt-2 mb-4">
-              La esencia de Puentes de Papel
+              El alma de Puentes de Papel
             </h2>
             <div class="w-16 h-1 bg-[#DD8574] rounded-full mx-auto"></div>
           </div>
@@ -294,20 +388,18 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
                 
                 <!-- Calligraphic signature and seal -->
                 <div class="flex items-center justify-between mt-6">
-                  <!-- Wax Seal Graphic / Medalla -->
+                  <!-- Wax Seal Graphic / Medalla with logo.webp -->
                   <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#A65F4C]/5 flex items-center justify-center border border-[#A65F4C]/10 text-[#A65F4C]">
-                      <Users class="w-5 h-5" />
+                    <div class="w-12 h-12 rounded-full overflow-hidden border border-[#A65F4C]/20 shadow-inner flex items-center justify-center bg-white">
+                      <Image src="/images/logo.webp" width={40} height={40} alt="Sello de Puentes de Papel" class="w-10 h-10 object-contain" />
                     </div>
                     <span class="text-xs uppercase tracking-widest text-slate-400 font-bold select-none">Manifiesto Colectivo</span>
                   </div>
                   
-                  <!-- Handwritten Signature -->
-                  <div class="text-right">
-                    <span class="font-handwritten text-4xl text-[#A65F4C] block select-none leading-none">
-                      Puentes de Papel
-                    </span>
-                    <span class="text-[10px] uppercase tracking-widest text-[#DD8574] font-bold">
+                  <!-- Handwritten Signature using Horizontal Logo -->
+                  <div class="text-right flex flex-col items-end">
+                    <Image src="/images/logo-horizontal.png" width={160} height={40} alt="Logo de Puentes de Papel" class="h-10 object-contain mix-blend-multiply opacity-80" />
+                    <span class="text-[10px] uppercase tracking-widest text-[#DD8574] font-bold mt-1 mr-2">
                       Munay Ruray
                     </span>
                   </div>
@@ -319,7 +411,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
           <!-- The 6 Pillars (designed as clean cards matching the site's design language, with text-xl size) -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Pillar 1 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 0ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -332,7 +424,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
             <!-- Pillar 2 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 80ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -345,7 +437,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
             <!-- Pillar 3 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 160ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -358,7 +450,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
             <!-- Pillar 4 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 240ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -371,7 +463,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
             <!-- Pillar 5 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 320ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -384,7 +476,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             </div>
 
             <!-- Pillar 6 -->
-            <div class="sr-fade-up-delayed">
+            <div class="sr-stagger-item" style="transition-delay: 400ms;">
               <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
@@ -642,57 +734,62 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
           <!-- Fundadora Card -->
           <div class="bg-[#F2EADD]/35 rounded-[3rem] border border-[#A65F4C]/5 p-8 md:p-16 mb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shrink-0 border-8 border-white shadow-md">
-              <img src="/images/sofia-martinez.png" alt="Sofía Martínez - Fundadora de Puentes de Papel" class="w-full h-full object-cover" />
+              <Image src="/images/dana-graciano.avif" width={256} height={256} alt="Dana Graciano - Fundadora de Puentes de Papel" class="w-full h-full object-cover" />
             </div>
             <div class="text-left flex-1">
-              <span class="bg-[#A65F4C]/10 text-[#A65F4C] text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider">Fundadora y Directora</span>
-              <h3 class="text-3xl font-extrabold text-slate-900 mt-3 mb-4">Sofía Martínez</h3>
-              <p class="text-lg text-slate-700 leading-relaxed font-light mb-6">
-                “Puentes de Papel nació en un invierno frío, cuando me di cuenta de cuánto añoraba las charlas tranquilas con mis abuelos. Empecé escribiendo una carta manuscrita a un hogar de ancianos cercano y vi cómo sus ojos se iluminaron al leerla. Supe entonces que una simple hoja de papel tenía el poder de derribar la soledad más profunda. Hoy, este proyecto es el reflejo de mi convicción de que las generaciones no deben vivir aisladas, sino abrazadas a través de la memoria y la ternura.”
-              </p>
+              <span class="bg-[#A65F4C]/10 text-[#A65F4C] text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider">Fundadora y Coordinadora General</span>
+              <h3 class="text-3xl font-extrabold text-slate-900 mt-3 mb-4">Dana Graciano</h3>
+              <div class="space-y-4 text-lg text-slate-700 leading-relaxed font-light mb-6 italic">
+                <p>
+                  “Puentes de Papel nació con una convicción simple: nadie debería sentirse solo. Siempre creí en el poder de las historias para unir personas. Con el tiempo, vi que los adultos mayores tienen mucho por contar y los jóvenes mucho por escuchar, pero pocos espacios de encuentro.
+                </p>
+                <p>
+                  Así nació esta iniciativa: una forma de crear lazos intergeneracionales a través del simple y poderoso gesto de escribir una carta. Lo que empezó como un pequeño proyecto hoy es una gran comunidad de voluntarios y residencias que construyen lazos reales basados en la empatía y la escucha.
+                </p>
+                <p>
+                  Hoy continúo coordinando el proyecto, con la ilusión de que cada carta encuentre la mirada que la está esperando.”
+                </p>
+              </div>
             </div>
           </div>
 
-          <!-- Team Grid -->
-          <h4 class="text-2xl font-bold text-slate-950 mb-8 text-center">Nuestro equipo de coordinación</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <!-- Member 1 -->
-            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
-                <img src="/images/valentina-gomez.png" alt="Valentina Gómez" class="w-full h-full object-cover" />
+            <div class="bg-[#FDFBF7] border border-[#A65F4C]/10 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:border-[#DD8574]/30 hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 group sr-stagger-item" style="transition-delay: 0ms;">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
+                <Image src="/images/paula-laurenti.avif" width={128} height={128} alt="Paula Laurenti" class="w-full h-full object-cover" />
               </div>
-              <h5 class="text-xl font-bold text-slate-900">Valentina Gómez</h5>
-              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Coordinación de Acompañamiento</p>
+              <h5 class="text-xl font-bold text-slate-900 mb-3">Paula Laurenti</h5>
+              <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Comunicación, Marketing y Alianzas</span>
               <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                Asegura que cada voluntario se sienta preparado e inspirado, guiando el proceso humano y capacitando con empatía.
+                Amplifica el mensaje del proyecto llevando nuestras historias a más personas. Coordina la comunicación institucional, las redes sociales, campañas y alianzas estratégicas para sostener nuestro crecimiento.
               </p>
             </div>
 
             <!-- Member 2 -->
-            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
-                <img src="/images/mateo-rodriguez.png" alt="Mateo Rodríguez" class="w-full h-full object-cover" />
+            <div class="bg-[#FDFBF7] border border-[#A65F4C]/10 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:border-[#DD8574]/30 hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 group sr-stagger-item" style="transition-delay: 100ms;">
+              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
+                <Image src="/images/rosario-ferrer.avif" width={128} height={128} alt="Rosario Ferrer" class="w-full h-full object-cover" />
               </div>
-              <h5 class="text-xl font-bold text-slate-900">Mateo Rodríguez</h5>
-              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Logística e Intercambios</p>
+              <h5 class="text-xl font-bold text-slate-900 mb-3">Rosario Ferrer</h5>
+              <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Desarrollo Institucional y Asesoramiento Legal</span>
               <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                El motor detrás de las cartas. Organiza las entregas y retiros, asegurando que cada sobre llegue a su destinatario.
+                Acompaña la estructura y el crecimiento estratégico del proyecto. Se encarga del desarrollo organizacional, del asesoramiento legal y de planificar los pasos para expandir nuestra comunidad.
               </p>
             </div>
 
-            <!-- Member 3 -->
-            <div class="bg-[#FDFBF7] border border-orange-100/50 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:shadow-sm transition-all duration-300">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100">
-                <img src="/images/gabriela-paz.png" alt="Gabriela Paz" class="w-full h-full object-cover" />
-              </div>
-              <h5 class="text-xl font-bold text-slate-900">Gabriela Paz</h5>
-              <p class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider mb-4">Relaciones Institucionales</p>
-              <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                Construye el lazo con residencias de mayores y sponsors, extendiendo los puentes del proyecto hacia nuevos horizontes.
-              </p>
-            </div>
+          </div>
 
+          <!-- Comunidad Section -->
+          <div class="bg-[#F2EADD]/25 rounded-[2.5rem] border border-[#A65F4C]/5 hover:border-[#A65F4C]/20 hover:shadow-sm p-8 md:p-12 mt-12 text-center relative overflow-hidden transition-all duration-300 group">
+            <div class="absolute -right-12 -bottom-12 text-[#DD8574]/10 pointer-events-none select-none">
+              <Users class="w-32 h-32 fill-current" />
+            </div>
+            <h5 class="text-2xl font-bold text-slate-900 mb-4">Un proyecto construido en comunidad</h5>
+            <p class="text-slate-700 text-lg leading-relaxed font-light max-w-2xl mx-auto">
+              Aunque coordinamos el proyecto, Puentes de Papel existe gracias a una red de voluntarios, residencias y organizaciones. Detrás de cada carta hay tiempo, dedicación y personas convencidas de que los vínculos humanos transforman vidas. Más que un equipo, somos una comunidad que trabaja para construir puentes donde antes había distancia.
+            </p>
           </div>
         </div>
       </section>
@@ -714,8 +811,10 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
             <!-- Right Image -->
             <div class="w-full lg:w-1/2 relative z-10">
               <div class="relative rounded-[2.5rem] overflow-hidden border-8 border-white shadow-xl">
-                <img 
+                <Image 
                   src="/images/puentes-de-papel-encuentro-generacional-voluntaria-adulta-mayor.webp" 
+                  width={600}
+                  height={400}
                   alt="Una joven voluntaria toma notas mientras una adulta mayor comparte sus historias en una sesión de Puentes de Papel" 
                   title="Joven voluntaria escuchando a adulta mayor en encuentro de Puentes de Papel"
                   aria-label="Encuentro intergeneracional del programa Puentes de Papel, donde jóvenes voluntarios acompañan a personas mayores en el rescate de sus memorias e historias de vida."
@@ -769,7 +868,7 @@ const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-may
         <div class="container mx-auto px-6 text-center">
           <div class="flex items-center justify-center gap-2 mb-6">
             <div class="bg-transparent flex items-center justify-center">
-              <img src="/images/logo-horizontal.png" alt="Logo de Puentes de Papel" class="w-84 object-cover mix-blend-multiply" />
+              <Image src="/images/logo-horizontal.png" width={336} height={84} alt="Logo de Puentes de Papel" class="w-84 object-cover mix-blend-multiply" />
             </div>
           </div>
           <p class="text-slate-500 font-medium">
