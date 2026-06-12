@@ -1,38 +1,18 @@
 ---
-import '../styles/global.css';
-import { ArrowLeft, Heart, Send, Sparkles, BookOpen, Check } from 'lucide-astro';
+import BaseLayout from '../components/BaseLayout.astro';
+import BackButton from '../components/BackButton.astro';
+import FormCard from '../components/FormCard.astro';
+import { Heart, Send, Sparkles, BookOpen, Check } from 'lucide-astro';
 
 const title = 'Registrar a un Adulto Mayor - Puentes de Papel';
 const description = 'Inscribe a una persona mayor en el programa Puentes de Papel para conectarla con jóvenes voluntarios a través del cariñoso intercambio de cartas.';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#A65F4C" />
-    
-    <!-- Import Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  </head>
-
-  <body class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen" style="font-family: 'Nunito', sans-serif;">
+<BaseLayout title={title} description={description}>
+  <div class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen">
     
     <!-- Top Navigation / Back button -->
-    <header class="container mx-auto px-6 py-8">
-      <a href="/" class="inline-flex items-center gap-2 text-[#A65F4C] hover:text-[#DD8574] font-bold text-lg transition-colors group">
-        <ArrowLeft class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
-        Volver al inicio
-      </a>
-    </header>
+    <BackButton />
 
     <main class="container mx-auto px-6 pb-24 max-w-3xl">
       <!-- Page Header -->
@@ -43,15 +23,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">
           Registrar a un adulto mayor
         </h1>
-        <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+        <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-light">
           Abre una ventana de compañía y alegría. Este registro puede ser completado por un familiar, cuidador/a o el referente de una residencia.
         </p>
       </div>
 
       <!-- Form Card Container -->
-      <div class="bg-white rounded-[2.5rem] p-5 pt-8 md:p-12 shadow-sm border border-slate-100/80 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#A65F4C] to-[#DD8574]"></div>
-
+      <FormCard>
         <!-- Progress Steps -->
         <div id="progress-container" class="flex justify-between items-center mb-12 relative max-w-md mx-auto">
           <!-- Connector line -->
@@ -412,7 +390,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
               ¡Registro completado!
             </h2>
-            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-light">
               Hemos registrado correctamente a <strong id="success-adult-name" class="text-[#A65F4C]"></strong> en el proyecto Puentes de Papel.
             </p>
             <div class="p-6 bg-[#FCF9F5] border border-orange-100 rounded-3xl max-w-lg mx-auto text-left space-y-3 mt-8">
@@ -420,7 +398,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 <Sparkles class="w-5 h-5 text-amber-500 fill-amber-400" />
                 ¿Cómo sigue el proceso?
               </h4>
-              <p class="text-slate-600 text-base leading-relaxed">
+              <p class="text-slate-600 text-base leading-relaxed font-light">
                 <strong>Mateo Rodríguez</strong>, de nuestro equipo de Logística, analizará los datos de contacto y la información del referente para coordinar el envío y recepción del primer sobre de cartas. Nos pondremos en contacto por teléfono o WhatsApp muy pronto. ¡Muchas gracias por tender este puente!
               </p>
             </div>
@@ -433,7 +411,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </div>
         </div>
 
-      </div>
+      </FormCard>
     </main>
 
     <!-- Simple client-side controller for step wizard and success message -->
@@ -470,7 +448,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 contactoTelefonoInput.required = false;
                 contactoNombreInput.value = '';
                 contactoTelefonoInput.value = '';
-                // Clear validation highlights
                 contactoNombreInput.classList.remove('border-rose-400');
                 contactoNombreInput.classList.add('border-transparent');
                 contactoTelefonoInput.classList.remove('border-rose-400');
@@ -481,11 +458,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }
 
         const updateProgress = () => {
-          // Progress bar percentage
           const percent = (currentStepIdx / (steps.length - 1)) * 100;
           progressBar.style.width = `${percent}%`;
 
-          // Nodes styles
           progressNodes.forEach((node, idx) => {
             if (idx < currentStepIdx) {
               node.className = 'w-10 h-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center shadow-md transition-all duration-300';
@@ -548,7 +523,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               updateProgress();
               window.scrollTo({ top: 200, behavior: 'smooth' });
             } else {
-              // Highlight missing fields
               const firstInvalid = steps[currentStepIdx].querySelector('.border-rose-400, .ring-rose-300');
               if (firstInvalid) {
                 firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -572,7 +546,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           if (validateStep(currentStepIdx)) {
             const nombreVal = document.getElementById('nombreCompleto').value;
             
-            // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
@@ -584,7 +557,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               Enviando...
             `;
 
-            // Gather all form data
             const formData = new FormData(form);
             const fields = {};
             
@@ -601,7 +573,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               }
             }
 
-            // Format fechaNacimiento to LatAm format (dd/mm/yyyy)
             if (fields['fechaNacimiento']) {
               const parts = fields['fechaNacimiento'].split('-');
               if (parts.length === 3) {
@@ -629,22 +600,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 body: JSON.stringify(payload)
               });
 
-              // Dado que usamos 'no-cors' para evitar bloqueos del navegador (como Brave Shields),
-              // no podemos leer el JSON de respuesta. Si el fetch no arrojó un error de red, asumimos éxito.
               document.getElementById('progress-container').classList.add('hidden');
               form.classList.add('hidden');
               
-              // Set name in success view
               document.getElementById('success-adult-name').innerText = nombreVal;
-              
-              // Show success view
               successView.classList.remove('hidden');
               window.scrollTo({ top: 150, behavior: 'smooth' });
             } catch (err) {
               console.error('Error al enviar:', err);
               alert('Error al enviar el formulario: ' + err.message);
               
-              // Restore button state
               submitBtn.disabled = false;
               submitBtn.innerHTML = originalBtnHtml;
             }
@@ -652,5 +617,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         });
       });
     </script>
-  </body>
-</html>
+  </div>
+</BaseLayout>

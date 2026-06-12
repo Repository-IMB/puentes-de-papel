@@ -1,0 +1,48 @@
+---
+interface Props {
+  variant?: 'stamp' | 'modern' | 'glass';
+  as?: 'div' | 'article' | 'section';
+  class?: string;
+  hoverEffect?: boolean;
+  staggerDelay?: number;
+}
+
+const {
+  variant = 'modern',
+  as: Element = 'div',
+  class: className = '',
+  hoverEffect = true,
+  staggerDelay
+} = Astro.props;
+
+// Check if user specifies custom padding in class prop
+const hasCustomPadding = className.split(' ').some(c => c.startsWith('p-') || c.startsWith('px-') || c.startsWith('py-') || c.startsWith('md:p-'));
+
+const defaultPadding = hasCustomPadding ? "" : "p-8 md:p-10";
+
+// Estilos base para cada una de las 3 variantes de tarjetas
+const variantStyles = {
+  stamp: `bg-white border border-[#EBE3D5] rounded-xl relative overflow-hidden group shadow-[0_4px_12px_-4px_rgba(166,95,76,0.15)] ${hasCustomPadding ? '' : 'p-8'}`,
+  modern: `border border-[#A65F4C]/10 rounded-[2.5rem] shadow-sm relative overflow-hidden group bg-white ${defaultPadding}`,
+  glass: `bg-white/80 backdrop-blur-sm border border-[#A65F4C]/15 rounded-[2.5rem] shadow-md relative overflow-hidden group ${defaultPadding}`
+};
+
+// Micro-interacciones unificadas de elevación y sombra
+const hoverStyles = hoverEffect 
+  ? "hover:-translate-y-1.5 hover:shadow-md hover:border-[#A65F4C]/30 transition-all duration-300" 
+  : "transition-all duration-300";
+
+// Integración con el sistema de animaciones scroll visible
+const animationClass = staggerDelay !== undefined ? "sr-stagger-item" : "";
+const animationStyle = staggerDelay !== undefined ? `transition-delay: ${staggerDelay}ms;` : "";
+---
+
+<Element 
+  class={`${variantStyles[variant]} ${hoverStyles} ${animationClass} ${className}`}
+  style={animationStyle}
+>
+  {variant === 'stamp' && (
+    <div class="absolute inset-2 border border-dashed border-[#A65F4C]/25 rounded-lg pointer-events-none"></div>
+  )}
+  <slot />
+</Element>

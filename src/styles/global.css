@@ -17,6 +17,7 @@ body {
 .sr-fade-up.sr-visible {
   opacity: 1;
   transform: translateY(0);
+  transition-delay: 0ms !important;
 }
 
 .sr-fade-up-delayed {
@@ -30,6 +31,7 @@ body {
 .sr-fade-up-delayed.sr-visible {
   opacity: 1;
   transform: translateY(0);
+  transition-delay: 0ms !important;
 }
 
 /* Stagger item style for grids, stamp collections and timelines */
@@ -44,6 +46,7 @@ body {
 .sr-stagger-item.sr-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+  transition-delay: 0ms !important;
 }
 
 /* Keyframes for Hero section on page load */

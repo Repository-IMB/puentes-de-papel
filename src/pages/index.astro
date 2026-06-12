@@ -1,126 +1,45 @@
 ---
-import '../styles/global.css';
 import { Image } from 'astro:assets';
-import { Play, Heart, Users, MessageCircle, BookOpen, Star, Sparkles, ArrowRight, UserPlus, Send, Menu, Mail, Clock, PenTool, Building } from 'lucide-astro';
+import { Play, Heart, Users, MessageCircle, BookOpen, Star, Sparkles, ArrowRight, UserPlus, Send, Menu, Mail, Clock, PenTool, Building, Coins, Printer, Truck, Megaphone, Gift, Wallet, CreditCard } from 'lucide-astro';
+import BaseLayout from '../components/BaseLayout.astro';
+import Card from '../components/Card.astro';
 
 const title = 'Puentes de Papel - Munay Ruray';
 const description = 'Conectando generaciones a través de historias y memorias. Puentes de Papel une a jóvenes voluntarios con personas mayores para compartir historias de vida, rescatar memorias y generar vínculos significativos.';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-mayor-voluntaria.webp', Astro.site);
+const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-mayor-voluntaria.webp', Astro.site || 'https://puentesdepapel.munayruray.com');
 
-const valores = [
-  { name: 'Empatía', icon: Heart },
-  { name: 'Escucha activa', icon: MessageCircle },
-  { name: 'Humanidad', icon: Sparkles },
-  { name: 'Comunidad', icon: Users },
-  { name: 'Respeto intergeneracional', icon: Clock },
-  { name: 'Acompañamiento', icon: UserPlus },
-  { name: 'Cercanía', icon: Send },
-  { name: 'Solidaridad', icon: Star },
-  { name: 'Compromiso social', icon: Building },
-  { name: 'Conexión humana', icon: BookOpen }
-];
+
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="Joven voluntaria conversando con adulto mayor en parque — Puentes de Papel" />
-    <meta property="og:locale" content="es_PE" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-
-    <!-- SEO adicional -->
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#A65F4C" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="/images/logo.webp" />
-
-    <!-- JSON-LD: Organización y WebSite -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "Munay Ruray",
-          "url": "https://munayruray.com"
-        },
-        {
-          "@type": "WebSite",
-          "name": "Puentes de Papel",
-          "alternateName": "Puentes de Papel - Munay Ruray",
-          "url": String(canonicalURL),
-          "description": description,
-          "publisher": { "@id": "https://munayruray.com" },
-          "inLanguage": "es-PE"
-        }
-      ]})} />
-
-    <!-- Import Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <script is:inline>
-      if (typeof window !== 'undefined') {
-        window.addEventListener('DOMContentLoaded', () => {
-          // Scroll progress indicator logic
-          const progress = document.getElementById('scroll-progress');
-          window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = winScroll / height;
-            if (progress) {
-              progress.style.transform = `scaleX(${scrolled})`;
-            }
-          });
-
-          // Reveal animations logic
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('sr-visible');
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            {
-              threshold: 0.15,
-            }
-          );
-
-          document
-            .querySelectorAll('.sr-fade-up, .sr-fade-up-delayed, .sr-stagger-item')
-            .forEach((el) => observer.observe(el));
-        });
+<BaseLayout 
+  title={title} 
+  description={description} 
+  ogImage={ogImage.toString()}
+  showScrollProgress={true}
+  showAnimations={true}
+>
+  <!-- JSON-LD: Organización y WebSite -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Munay Ruray",
+        "url": "https://munayruray.com"
+      },
+      {
+        "@type": "WebSite",
+        "name": "Puentes de Papel",
+        "alternateName": "Puentes de Papel - Munay Ruray",
+        "url": String(Astro.url.href),
+        "description": description,
+        "publisher": { "@id": "https://munayruray.com" },
+        "inLanguage": "es-PE"
       }
-    </script>
-  </head>
+    ]})} />
 
-  <body>
-    <!-- Scroll Progress Tracker -->
-    <div class="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#A65F4C] via-[#DD8574] to-[#F2EADD] z-50 origin-left scale-x-0 transition-transform duration-75" id="scroll-progress"></div>
-
-    <div class="min-h-screen font-sans text-slate-800 overflow-hidden" style="font-family: 'Nunito', sans-serif;">
-      <div class="bg-[#F2EADD]">
+  <div class="min-h-screen font-sans text-slate-800 overflow-hidden" style="font-family: 'Nunito', sans-serif;">
+    <div class="bg-[#F2EADD]">
         <!-- --- Navigation Bar (Optional but good for context) --- -->
         <header class="container mx-auto px-6 py-6 relative z-10 animate-slide-down">
           <div class="flex justify-between items-center">
@@ -163,7 +82,7 @@ const valores = [
         </header>
   
         <!-- --- 1. Hero Section --- -->
-        <section class="container mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32 relative animate-fade-slide-up">
+        <section class="container mx-auto px-6 max-w-7xl pt-12 pb-24 md:pt-20 md:pb-32 relative animate-fade-slide-up">
           <!-- Decorative Background Blobs -->
           <div class="absolute top-0 left-0 w-96 h-96 bg-[#DD8574] rounded-full mix-blend-multiply filter blur-[128px] opacity-30"></div>
           <div class="absolute top-0 right-0 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-[128px] opacity-40"></div>
@@ -234,7 +153,7 @@ const valores = [
 
       <!-- --- 2. About Section --- -->
       <section id="sobre-el-proyecto" class="py-24 bg-white relative sr-fade-up">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 max-w-7xl">
           <div class="flex flex-col md:flex-row items-center gap-16">
             
             <!-- Left Image -->
@@ -276,6 +195,9 @@ const valores = [
                 <p>
                   A través de este programa, jóvenes voluntarios acompañan a adultos mayores en un proceso de diálogo y narración de sus memorias, transformando esas historias en relatos que preservan sus experiencias y fortalecen el vínculo entre generaciones.
                 </p>
+                <p>
+                  Las historias de vida son parte fundamental de nuestra identidad y memoria social. Al crear espacios donde las personas mayores comparten sus experiencias, promovemos el respeto intergeneracional y preservamos un legado invaluable que de otra forma podría perderse.
+                </p>
               </div>
             </div>
 
@@ -284,7 +206,7 @@ const valores = [
           <!-- Misión y Visión Section -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
             <!-- Misión Card -->
-            <div class="bg-[#FCF9F5] rounded-[2.5rem] p-10 md:p-12 border border-[#A65F4C]/5 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
+            <Card variant="modern" hoverEffect={false} class="bg-[#FCF9F5] border-[#A65F4C]/5 p-10 md:p-12 hover:shadow-md">
               <div class="absolute -right-20 -top-20 w-48 h-48 bg-[#A65F4C]/5 rounded-full filter blur-xl group-hover:scale-110 transition-transform duration-500"></div>
               <div class="flex items-center gap-4 mb-6">
                 <div class="w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#A65F4C]">
@@ -295,10 +217,10 @@ const valores = [
               <p class="text-xl text-slate-600 leading-relaxed font-light">
                 Generar vínculos intergeneracionales a través del intercambio de cartas, promoviendo la escucha, el acompañamiento emocional y la construcción de comunidades más humanas y conectadas.
               </p>
-            </div>
+            </Card>
 
             <!-- Visión Card -->
-            <div class="bg-[#FCF9F5] rounded-[2.5rem] p-10 md:p-12 border border-[#A65F4C]/5 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden group">
+            <Card variant="modern" hoverEffect={false} class="bg-[#FCF9F5] border-[#A65F4C]/5 p-10 md:p-12 hover:shadow-md">
               <div class="absolute -right-20 -top-20 w-48 h-48 bg-amber-100/30 rounded-full filter blur-xl group-hover:scale-110 transition-transform duration-500"></div>
               <div class="flex items-center gap-4 mb-6">
                 <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
@@ -309,49 +231,20 @@ const valores = [
               <p class="text-xl text-slate-600 leading-relaxed font-light">
                 Construir una red cada vez más grande de jóvenes, adultos mayores, residencias y organizaciones que crean en el poder de la empatía y el encuentro humano como herramientas para transformar realidades.
               </p>
-            </div>
+            </Card>
           </div>
 
-          <!-- Valores Section -->
-          <div class="mt-20">
-            <div class="text-center max-w-xl mx-auto mb-12">
-              <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Lo que nos guía</span>
-              <h3 class="text-3xl md:text-4xl font-black text-slate-900 mt-2">Valores</h3>
-              <div class="w-16 h-1 bg-[#DD8574] rounded-full mx-auto mt-4"></div>
-            </div>
-            
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-              {valores.map((val, idx) => {
-                const IconComponent = val.icon;
-                return (
-                  <div class="relative bg-white border border-[#EBE3D5] rounded-xl p-8 hover:-translate-y-1.5 transition-all duration-300 shadow-[0_4px_12px_-4px_rgba(166,95,76,0.15)] hover:shadow-md hover:border-[#A65F4C]/30 group overflow-hidden sr-stagger-item" style={`transition-delay: ${idx * 65}ms;`}>
-                    <!-- Inner perforated stamp border -->
-                    <div class="absolute inset-2 border border-dashed border-[#A65F4C]/25 rounded-lg pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center">
-                      <!-- Icon inside a postmark circle -->
-                      <div class="w-14 h-14 rounded-full border border-[#A65F4C]/15 bg-[#FCF9F5] flex items-center justify-center text-[#A65F4C] mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent class="w-7 h-7" />
-                      </div>
-                      <!-- Value Name -->
-                      <h4 class="font-extrabold text-slate-800 text-base md:text-lg leading-snug tracking-tight text-center">{val.name}</h4>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </section>
 
       <!-- --- Nuestra Esencia Section --- -->
       <section class="py-24 bg-[#FCF9F5] border-y border-orange-100/50 relative sr-fade-up">
-        <!-- Subtle heart floating icon in the background -->
-        <div class="absolute -top-12 left-1/4 text-rose-200/30 pointer-events-none select-none">
-          <Heart class="w-24 h-24 fill-current" />
+        <!-- Background decorative floating elements -->
+        <div class="absolute right-10 top-10 text-orange-200/25 pointer-events-none select-none">
+          <BookOpen class="w-20 h-20" />
         </div>
         
-        <div class="container mx-auto px-6 max-w-5xl">
+        <div class="container mx-auto px-6 max-w-7xl">
           <!-- Section Title -->
           <div class="text-center mb-16">
             <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Nuestra esencia</span>
@@ -412,7 +305,7 @@ const valores = [
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Pillar 1 -->
             <div class="sr-stagger-item" style="transition-delay: 0ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <Heart class="w-6 h-6 text-[#A65F4C] fill-[#A65F4C]/10" />
@@ -420,12 +313,12 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Combatir la soledad</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">Creamos compañía en las horas silenciosas, llevando palabras que abrigan y acompañan.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Pillar 2 -->
             <div class="sr-stagger-item" style="transition-delay: 80ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <Users class="w-6 h-6 text-amber-600" />
@@ -433,12 +326,12 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Vínculos reales</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">No es un contacto efímero; es una relación de cariño y respeto que se siembra mes a mes.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Pillar 3 -->
             <div class="sr-stagger-item" style="transition-delay: 160ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <MessageCircle class="w-6 h-6 text-blue-600" />
@@ -446,12 +339,12 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">El valor de escuchar</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">Detenerse a oír con atención, rescatando la sabiduría que solo dan los años.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Pillar 4 -->
             <div class="sr-stagger-item" style="transition-delay: 240ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <Sparkles class="w-6 h-6 text-rose-500" />
@@ -459,12 +352,12 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Pequeños gestos</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">Una carta escrita a mano es un puente que demuestra que cada vida y cada historia importan.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Pillar 5 -->
             <div class="sr-stagger-item" style="transition-delay: 320ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <Clock class="w-6 h-6 text-emerald-600" />
@@ -472,12 +365,12 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Tiempo y cuidado</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">Promovemos un ritmo más humano en la comunicación, valorando la espera y la reflexión.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Pillar 6 -->
             <div class="sr-stagger-item" style="transition-delay: 400ms;">
-              <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm hover:-translate-y-1.5 transition-all duration-300 group h-full flex flex-col justify-between">
+              <Card variant="modern" class="bg-white border-slate-100 p-8 h-full flex flex-col justify-between">
                 <div>
                   <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
                     <PenTool class="w-6 h-6 text-purple-600" />
@@ -485,7 +378,7 @@ const valores = [
                   <h3 class="font-bold text-slate-900 text-2xl mt-6 mb-3">Memoria activa</h3>
                   <p class="text-slate-600 text-xl leading-relaxed">Escribir para atesorar, rescatando anécdotas, vivencias y saberes que trascienden el tiempo.</p>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -498,7 +391,7 @@ const valores = [
            <Star class="w-16 h-16 fill-current" />
         </div>
         
-        <div class="container mx-auto px-6 relative z-10">
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
           <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">
               ¿Cómo funciona el proyecto?
@@ -509,58 +402,58 @@ const valores = [
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Card 1 -->
             <div class="sr-fade-up-delayed">
-              <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
+              <Card variant="modern" class="bg-white border-slate-100 overflow-hidden p-0 h-full">
                 <div class="h-40 bg-rose-100 flex items-center justify-center relative overflow-hidden">
                   <div class="absolute w-32 h-32 bg-rose-200 rounded-full -right-10 -top-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
                   <UserPlus class="w-16 h-16 text-rose-500 relative z-10" />
                 </div>
                 <div class="p-8 text-center">
                   <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 1</h3>
-                  <p class="text-slate-600 font-medium text-xl">Adultos mayores y voluntarios se inscriben al programa.</p>
+                  <p class="text-slate-600 font-light text-xl">Adultos mayores y voluntarios se inscriben al programa.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Card 2 -->
             <div class="sr-fade-up-delayed">
-              <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
+              <Card variant="modern" class="bg-white border-slate-100 overflow-hidden p-0 h-full">
                 <div class="h-40 bg-amber-100 flex items-center justify-center relative overflow-hidden">
                   <div class="absolute w-32 h-32 bg-amber-200 rounded-full -left-10 -bottom-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
                   <Heart class="w-16 h-16 text-amber-500 relative z-10" />
                 </div>
                 <div class="p-8 text-center">
                   <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 2</h3>
-                  <p class="text-slate-600 font-medium text-xl">Se realiza un proceso de emparejamiento según intereses y afinidades.</p>
+                  <p class="text-slate-600 font-light text-xl">Se realiza un proceso de emparejamiento según intereses y afinidades.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Card 3 -->
             <div class="sr-fade-up-delayed">
-              <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
+              <Card variant="modern" class="bg-white border-slate-100 overflow-hidden p-0 h-full">
                 <div class="h-40 bg-[#F2EADD] flex items-center justify-center relative overflow-hidden">
                   <div class="absolute w-32 h-32 bg-[#DD8574]/40 rounded-full -right-10 -bottom-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
                   <BookOpen class="w-16 h-16 text-[#A65F4C] relative z-10" />
                 </div>
                 <div class="p-8 text-center">
                   <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 3</h3>
-                  <p class="text-slate-600 font-medium text-lg leading-relaxed">Los voluntarios participan de una breve capacitación inicial sobre escucha, acompañamiento y el funcionamiento del proyecto.</p>
+                  <p class="text-slate-600 font-light text-xl leading-relaxed">Los voluntarios reciben una capacitación inicial sobre escucha y acompañamiento.</p>
                 </div>
-              </div>
+              </Card>
             </div>
 
             <!-- Card 4 -->
             <div class="sr-fade-up-delayed">
-              <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:-translate-y-2 transition-transform duration-300 group h-full">
+              <Card variant="modern" class="bg-white border-slate-100 overflow-hidden p-0 h-full">
                 <div class="h-40 bg-emerald-100 flex items-center justify-center relative overflow-hidden">
                   <div class="absolute w-32 h-32 bg-emerald-200 rounded-full -left-10 -top-10 opacity-50 group-hover:scale-110 transition-transform duration-500"></div>
                   <Mail class="w-16 h-16 text-emerald-500 relative z-10" />
                 </div>
                 <div class="p-8 text-center">
                   <h3 class="text-2xl font-bold text-slate-900 mb-3">Paso 4</h3>
-                  <p class="text-slate-600 font-medium text-lg leading-relaxed">Comienza el intercambio de cartas entre los voluntarios y los adultos mayores, generando vínculos intergeneracionales a través de la escritura y el acompañamiento.</p>
+                  <p class="text-slate-600 font-light text-xl leading-relaxed">Inicia el intercambio de cartas, conectando generaciones mediante la escritura.</p>
                 </div>
-              </div>
+              </Card>
             </div>
             </div>
             
@@ -575,7 +468,7 @@ const valores = [
           <Heart class="w-16 h-16" />
         </div>
         
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
           <!-- Encabezado Emocional -->
           <div class="text-center mb-20">
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">El ritmo del corazón</h2>
@@ -651,13 +544,13 @@ const valores = [
       </section>
 
       <!-- --- 4. Testimonials Section --- -->
-      <section class="py-24 px-6 bg-white sr-fade-up">
-        <div class="container mx-auto">
+      <section class="py-24 bg-white sr-fade-up">
+        <div class="container mx-auto px-6 max-w-7xl">
           <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-4xl md:text-5xl font-black text-[#A65F4C] mb-4">
               Voces que construyen puentes
             </h2>
-            <p class="text-lg md:text-xl text-slate-600 leading-relaxed">
+            <p class="text-xl text-slate-600 leading-relaxed">
               Historias reales de personas mayores y voluntarios que ya forman parte de Puentes de Papel.
             </p>
           </div>
@@ -665,7 +558,7 @@ const valores = [
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
             <!-- Testimonio 1 -->
             <div class="sr-fade-up-delayed">
-              <article class="bg-[#F2EADD]/80 border border-[#A65F4C]/10 rounded-[2rem] p-8 flex flex-col h-full shadow-sm hover:shadow-md hover:-translate-y-2 transition-all duration-300">
+              <Card variant="modern" as="article" class="bg-[#F2EADD]/80 flex flex-col h-full">
                 <div class="flex items-center gap-3 mb-4">
                   <div class="w-10 h-10 rounded-full bg-white border border-[#A65F4C]/20 flex items-center justify-center">
                     <Heart class="w-5 h-5 text-[#A65F4C]" />
@@ -675,15 +568,15 @@ const valores = [
                     <p class="text-xs font-semibold tracking-wide uppercase text-slate-500">Participante</p>
                   </div>
                 </div>
-                <p class="text-slate-700 leading-relaxed flex-1 text-xl">
+                <p class="text-slate-700 leading-relaxed flex-1 text-xl font-light">
                   «Gracias a Puentes de Papel he recordado momentos de mi vida que creía olvidados. Me emociona saber que mis historias quedarán escritas y que alguien se toma el tiempo de escucharlas con cariño.»
                 </p>
-              </article>
+              </Card>
             </div>
 
             <!-- Testimonio 2 -->
             <div class="sr-fade-up-delayed">
-              <article class="bg-white border border-[#A65F4C]/10 rounded-[2rem] p-8 flex flex-col h-full shadow-sm hover:shadow-md hover:-translate-y-2 transition-all duration-300">
+              <Card variant="modern" as="article" class="bg-white flex flex-col h-full">
                 <div class="flex items-center gap-3 mb-4">
                   <div class="w-10 h-10 rounded-full bg-[#A65F4C] flex items-center justify-center">
                     <Users class="w-5 h-5 text-white" />
@@ -693,15 +586,15 @@ const valores = [
                     <p class="text-xs font-semibold tracking-wide uppercase text-slate-500">Voluntario</p>
                   </div>
                 </div>
-                <p class="text-slate-700 leading-relaxed flex-1 text-xl">
+                <p class="text-slate-700 leading-relaxed flex-1 text-xl font-light">
                   «Escuchar a don Jorge me ha cambiado la forma de ver el tiempo y la memoria. Cada encuentro es una conversación profunda, llena de aprendizajes que no se encuentran en ningún libro.»
                 </p>
-              </article>
+              </Card>
             </div>
 
             <!-- Testimonio 3 -->
             <div class="sr-fade-up-delayed">
-              <article class="bg-[#F2EADD] border border-[#A65F4C]/10 rounded-[2rem] p-8 flex flex-col h-full shadow-sm hover:shadow-md hover:-translate-y-2 transition-all duration-300">
+              <Card variant="modern" as="article" class="bg-[#F2EADD] flex flex-col h-full">
                 <div class="flex items-center gap-3 mb-4">
                   <div class="w-10 h-10 rounded-full bg-white border border-[#A65F4C]/20 flex items-center justify-center">
                     <BookOpen class="w-5 h-5 text-[#A65F4C]" />
@@ -711,10 +604,10 @@ const valores = [
                     <p class="text-xs font-semibold tracking-wide uppercase text-slate-500">Coordinadora</p>
                   </div>
                 </div>
-                <p class="text-slate-700 leading-relaxed flex-1 text-xl">
+                <p class="text-slate-700 leading-relaxed flex-1 text-xl font-light">
                   «Lo más valioso es ver cómo se transforman las miradas en cada sesión: las personas mayores se sienten reconocidas y los jóvenes descubren un lugar donde su escucha tiene un impacto real.»
                 </p>
-              </article>
+              </Card>
             </div>
           </div>
         </div>
@@ -722,7 +615,7 @@ const valores = [
 
       <!-- --- Quiénes Somos Section --- -->
       <section id="quienes-somos" class="py-24 bg-white relative sr-fade-up">
-        <div class="container mx-auto px-6 max-w-6xl">
+        <div class="container mx-auto px-6 max-w-7xl">
           <div class="text-center mb-16">
             <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase">Quiénes somos</span>
             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mt-2 mb-4">
@@ -739,7 +632,7 @@ const valores = [
             <div class="text-left flex-1">
               <span class="bg-[#A65F4C]/10 text-[#A65F4C] text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider">Fundadora y Coordinadora General</span>
               <h3 class="text-3xl font-extrabold text-slate-900 mt-3 mb-4">Dana Graciano</h3>
-              <div class="space-y-4 text-lg text-slate-700 leading-relaxed font-light mb-6 italic">
+              <div class="space-y-4 text-xl text-slate-700 leading-relaxed font-light mb-6 italic">
                 <p>
                   “Puentes de Papel nació con una convicción simple: nadie debería sentirse solo. Siempre creí en el poder de las historias para unir personas. Con el tiempo, vi que los adultos mayores tienen mucho por contar y los jóvenes mucho por escuchar, pero pocos espacios de encuentro.
                 </p>
@@ -756,80 +649,326 @@ const valores = [
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <!-- Member 1 -->
-            <div class="bg-[#FDFBF7] border border-[#A65F4C]/10 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:border-[#DD8574]/30 hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 group sr-stagger-item" style="transition-delay: 0ms;">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
-                <Image src="/images/paula-laurenti.avif" width={128} height={128} alt="Paula Laurenti" class="w-full h-full object-cover" />
-              </div>
-              <h5 class="text-xl font-bold text-slate-900 mb-3">Paula Laurenti</h5>
-              <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Comunicación, Marketing y Alianzas</span>
-              <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                Amplifica el mensaje del proyecto llevando nuestras historias a más personas. Coordina la comunicación institucional, las redes sociales, campañas y alianzas estratégicas para sostener nuestro crecimiento.
-              </p>
+            <div class="sr-stagger-item" style="transition-delay: 0ms;">
+              <Card variant="modern" class="bg-[#FDFBF7] text-center flex flex-col items-center hover:border-[#DD8574]/30">
+                <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
+                  <Image src="/images/paula-laurenti.avif" width={128} height={128} alt="Paula Laurenti" class="w-full h-full object-cover" />
+                </div>
+                <h5 class="text-xl font-bold text-slate-900 mb-3">Paula Laurenti</h5>
+                <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Comunicación, Marketing y Alianzas</span>
+                <p class="text-slate-600 text-xl leading-relaxed font-light">
+                  Amplifica el mensaje del proyecto llevando nuestras historias to más personas. Coordina la comunicación institucional, las redes sociales, campañas y alianzas estratégicas para sostener nuestro crecimiento.
+                </p>
+              </Card>
             </div>
 
             <!-- Member 2 -->
-            <div class="bg-[#FDFBF7] border border-[#A65F4C]/10 rounded-[2.5rem] p-8 text-center flex flex-col items-center hover:border-[#DD8574]/30 hover:shadow-md hover:-translate-y-1.5 transition-all duration-300 group sr-stagger-item" style="transition-delay: 100ms;">
-              <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
-                <Image src="/images/rosario-ferrer.avif" width={128} height={128} alt="Rosario Ferrer" class="w-full h-full object-cover" />
-              </div>
-              <h5 class="text-xl font-bold text-slate-900 mb-3">Rosario Ferrer</h5>
-              <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Desarrollo Institucional y Asesoramiento Legal</span>
-              <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                Acompaña la estructura y el crecimiento estratégico del proyecto. Se encarga del desarrollo organizacional, del asesoramiento legal y de planificar los pasos para expandir nuestra comunidad.
-              </p>
+            <div class="sr-stagger-item" style="transition-delay: 100ms;">
+              <Card variant="modern" class="bg-[#FDFBF7] text-center flex flex-col items-center hover:border-[#DD8574]/30">
+                <div class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-white shadow-sm bg-slate-100 group-hover:scale-105 transition-transform duration-300">
+                  <Image src="/images/rosario-ferrer.avif" width={128} height={128} alt="Rosario Ferrer" class="w-full h-full object-cover" />
+                </div>
+                <h5 class="text-xl font-bold text-slate-900 mb-3">Rosario Ferrer</h5>
+                <span class="bg-[#A65F4C]/5 text-[#A65F4C] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">Desarrollo Institucional y Asesoramiento Legal</span>
+                <p class="text-slate-600 text-xl leading-relaxed font-light">
+                  Acompaña la estructura y el crecimiento estratégico del proyecto. Se encarga del desarrollo organizacional, del asesoramiento legal y de planificar los pasos para expandir nuestra comunidad.
+                </p>
+              </Card>
             </div>
 
           </div>
 
           <!-- Comunidad Section -->
-          <div class="bg-[#F2EADD]/25 rounded-[2.5rem] border border-[#A65F4C]/5 hover:border-[#A65F4C]/20 hover:shadow-sm p-8 md:p-12 mt-12 text-center relative overflow-hidden transition-all duration-300 group">
+          <!-- <Card variant="modern" hoverEffect={false} class="bg-[#F2EADD]/25 border-[#A65F4C]/5 hover:border-[#A65F4C]/20 hover:shadow-sm p-8 md:p-12 mt-12 text-center">
             <div class="absolute -right-12 -bottom-12 text-[#DD8574]/10 pointer-events-none select-none">
               <Users class="w-32 h-32 fill-current" />
             </div>
             <h5 class="text-2xl font-bold text-slate-900 mb-4">Un proyecto construido en comunidad</h5>
-            <p class="text-slate-700 text-lg leading-relaxed font-light max-w-2xl mx-auto">
+            <p class="text-slate-700 text-xl leading-relaxed font-light max-w-2xl mx-auto">
               Aunque coordinamos el proyecto, Puentes de Papel existe gracias a una red de voluntarios, residencias y organizaciones. Detrás de cada carta hay tiempo, dedicación y personas convencidas de que los vínculos humanos transforman vidas. Más que un equipo, somos una comunidad que trabaja para construir puentes donde antes había distancia.
             </p>
+          </Card> -->
+        </div>
+      </section>
+
+
+      <!-- --- Sección B: Embajadores --- -->
+      <section class="py-32 md:py-44 bg-[#FCF9F5] border-y border-[#A65F4C]/5 relative overflow-hidden sr-fade-up" id="embajadores">
+        <!-- Floating decorative shape in background -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#A65F4C]/5 rounded-full filter blur-2xl pointer-events-none"></div>
+        <div class="absolute -left-20 -top-20 w-80 h-80 bg-amber-100/30 rounded-full filter blur-2xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 max-w-7xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-stretch">
+            
+            <!-- Columna 1: El Impacto Humano (Enfoque Emocional) -->
+            <div class="flex flex-col justify-between items-start text-left h-full">
+              <div>
+                <span class="inline-flex items-center gap-1.5 bg-[#A65F4C]/10 border border-[#A65F4C]/15 text-[#A65F4C] text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider mb-6">
+                  Hazte Embajador
+                </span>
+                
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-[1.15] mb-6">
+                  Ayudá a que más historias sucedan
+                </h2>
+                
+                <p class="text-xl text-slate-600 leading-relaxed font-light mb-8 text-pretty">
+                  Cada carta necesita tiempo, dedicación y una red de personas que la haga posible. Tu aporte conecta a jóvenes y adultos mayores a través de las palabras.
+                </p>
+
+                <div class="mb-10 p-6 bg-amber-50/60 border border-amber-100/80 rounded-3xl text-left w-full">
+                  <p class="text-base font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <Heart class="w-4 h-4 text-[#A65F4C] fill-current animate-pulse" />
+                    ¿Quieres colaborar hoy mismo?
+                  </p>
+                  <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    Aunque nuestra plataforma de donaciones directas está en camino, ya puedes sumarte como embajador patrocinando materiales, correo o talleres.
+                  </p>
+                  <a href="mailto:hola@munayruray.com?subject=Quiero ser embajador de Puentes de Papel" class="inline-flex items-center gap-2 bg-[#A65F4C] text-white hover:bg-[#DD8574] text-sm font-bold px-5 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-300 shadow-sm cursor-pointer">
+                    <span>Contactarnos por correo</span>
+                    <Mail class="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Grid de mini-cards -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full mt-auto">
+                <!-- Mini-card 1 -->
+                <div class="bg-white rounded-2xl p-5 border border-[#A65F4C]/10 shadow-sm hover:shadow-md hover:border-[#A65F4C]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
+                  <div class="w-12 h-12 rounded-xl bg-orange-50/80 border border-orange-100 flex items-center justify-center text-[#A65F4C] mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <PenTool class="w-6 h-6" />
+                  </div>
+                  <span class="text-sm font-bold text-slate-800 tracking-tight">Materiales</span>
+                </div>
+                
+                <!-- Mini-card 2 -->
+                <div class="bg-white rounded-2xl p-5 border border-[#A65F4C]/10 shadow-sm hover:shadow-md hover:border-[#A65F4C]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
+                  <div class="w-12 h-12 rounded-xl bg-amber-50/80 border border-amber-100 flex items-center justify-center text-[#A65F4C] mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Truck class="w-6 h-6" />
+                  </div>
+                  <span class="text-sm font-bold text-slate-800 tracking-tight">Logística</span>
+                </div>
+                
+                <!-- Mini-card 3 -->
+                <div class="bg-white rounded-2xl p-5 border border-[#A65F4C]/10 shadow-sm hover:shadow-md hover:border-[#A65F4C]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
+                  <div class="w-12 h-12 rounded-xl bg-emerald-50/80 border border-emerald-100 flex items-center justify-center text-[#A65F4C] mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Building class="w-6 h-6" />
+                  </div>
+                  <span class="text-sm font-bold text-slate-800 tracking-tight">Residencias</span>
+                </div>
+                
+                <!-- Mini-card 4 -->
+                <div class="bg-white rounded-2xl p-5 border border-[#A65F4C]/10 shadow-sm hover:shadow-md hover:border-[#A65F4C]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
+                  <div class="w-12 h-12 rounded-xl bg-rose-50/80 border border-rose-100 flex items-center justify-center text-[#A65F4C] mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <Users class="w-6 h-6" />
+                  </div>
+                  <span class="text-sm font-bold text-slate-800 tracking-tight">Vínculos</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna 2: Zona de Aportes Futuros (Modern borderless spacious design) -->
+            <div class="w-full relative h-full flex flex-col justify-center">
+              <div class="max-w-xl w-full mx-auto lg:mx-0">
+                <span class="text-xs font-bold text-[#A65F4C] uppercase tracking-widest block mb-2">
+                  Próximamente
+                </span>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">
+                  Próximas formas de ayudar
+                </h3>
+                <p class="text-slate-600 text-xl mb-10 leading-relaxed text-pretty">
+                  Estamos preparando canales directos para aportes mensuales y donaciones únicas.
+                  <span class="block mt-2 font-medium text-slate-500 text-sm">
+                    (Muy pronto disponible)
+                  </span>
+                </p>
+
+                <!-- Spacious vertical layout (No cards, direct layout) -->
+                <div class="space-y-10">
+                  <!-- Option 1: Transferencia Bancaria -->
+                  <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                      <div class="w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#A65F4C] shrink-0 shadow-sm">
+                        <CreditCard class="w-7 h-7" />
+                      </div>
+                      <div>
+                        <h4 class="text-xl font-bold text-slate-950 leading-tight">Transferencia Bancaria</h4>
+                        <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider mt-0.5">CBU / Alias</p>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-white/80 backdrop-blur-sm p-4.5 rounded-2xl border border-slate-200/80 flex items-center justify-between gap-4 select-none cursor-not-allowed w-full hover:border-[#A65F4C]/30 hover:shadow-sm transition-all duration-300">
+                      <span class="text-base font-mono font-medium text-slate-600 truncate">cbu.puentesdepapel.alias</span>
+                      <span class="text-xs font-bold text-[#A65F4C] uppercase tracking-wider border border-[#A65F4C]/20 bg-amber-50/50 px-3.5 py-2 rounded-lg shrink-0">Copiar</span>
+                    </div>
+                  </div>
+
+                  <!-- Option 2: Mercado Pago / Enlaces -->
+                  <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                      <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 shrink-0 shadow-sm">
+                        <Wallet class="w-7 h-7" />
+                      </div>
+                      <div>
+                        <h4 class="text-xl font-bold text-slate-950 leading-tight">Mercado Pago / Enlaces</h4>
+                        <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider mt-0.5">Links Rápidos</p>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3.5 cursor-not-allowed">
+                      <div class="bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/80 text-base font-bold text-slate-600 select-none text-center min-w-[120px] hover:border-[#A65F4C]/30 hover:shadow-sm transition-all duration-300">
+                        $1.000
+                      </div>
+                      <div class="bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/80 text-base font-bold text-slate-600 select-none text-center min-w-[120px] hover:border-[#A65F4C]/30 hover:shadow-sm transition-all duration-300">
+                        $3.000
+                      </div>
+                      <div class="bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/80 text-base font-bold text-slate-600 select-none text-center min-w-[120px] hover:border-[#A65F4C]/30 hover:shadow-sm transition-all duration-300">
+                        $5.000
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
 
-      <!-- --- 5. Value Proposition --- -->
-      <section class="py-20 px-6 bg-white sr-fade-up">
-        <div class="container mx-auto">
-          <div class="bg-gradient-to-br from-[#F2EADD] via-white to-[#DD8574]/10 rounded-[3rem] p-8 md:p-20 border border-white flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative overflow-hidden">
-            <!-- Left Text -->
-            <div class="w-full lg:w-1/2 text-left relative z-10">
-              <h2 class="text-3xl md:text-5xl font-black text-[#A65F4C] mb-8 text-center md:text-left">
-                El valor de compartir historias
-              </h2>
-              <p class="text-xl text-slate-700 leading-relaxed font-medium mb-8">
-                Las historias de vida son parte fundamental de nuestra identidad y memoria social. Puentes de Papel busca crear espacios donde las personas mayores puedan compartir sus experiencias y ser escuchadas, mientras que los jóvenes tienen la oportunidad de aprender, conectar y valorar las trayectorias de otras generaciones. Este intercambio genera vínculos significativos, promueve el respeto intergeneracional y contribuye a preservar memorias que de otra forma podrían perderse.
-              </p>
-            </div>
-            
-            <!-- Right Image -->
-            <div class="w-full lg:w-1/2 relative z-10">
-              <div class="relative rounded-[2.5rem] overflow-hidden border-8 border-white shadow-xl">
-                <Image 
-                  src="/images/puentes-de-papel-encuentro-generacional-voluntaria-adulta-mayor.webp" 
-                  width={600}
-                  height={400}
-                  alt="Una joven voluntaria toma notas mientras una adulta mayor comparte sus historias en una sesión de Puentes de Papel" 
-                  title="Joven voluntaria escuchando a adulta mayor en encuentro de Puentes de Papel"
-                  aria-label="Encuentro intergeneracional del programa Puentes de Papel, donde jóvenes voluntarios acompañan a personas mayores en el rescate de sus memorias e historias de vida."
-                  role="img"
-                  class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
-                />
+      <!-- --- Sección C: Aliados --- -->
+      <section class="py-24 bg-white relative overflow-hidden sr-fade-up" id="aliados">
+        <!-- Floating decorative shape -->
+        <div class="absolute left-10 bottom-10 text-orange-100/30 pointer-events-none select-none">
+          <Sparkles class="w-24 h-24" />
+        </div>
+
+        <div class="container mx-auto px-6 max-w-7xl text-center">
+          <!-- Cabecera minimalista -->
+          <div class="max-w-3xl mx-auto mb-16">
+            <span class="text-sm font-bold text-[#A65F4C] tracking-widest uppercase mb-3 inline-block">Empresas y Organizaciones</span>
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              Construyamos puentes juntos
+            </h2>
+            <p class="text-xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto text-pretty">
+              Unimos fuerzas con marcas y organizaciones que creen en el poder del encuentro humano y la empatía para transformar realidades.
+            </p>
+          </div>
+
+          <!-- Formas de colaborar (Flex Tags con diseño interactivo sutil) -->
+          <div class="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mb-20">
+            <!-- Tag 1 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Coins class="w-5 h-5" />
               </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Aporte económico</span>
+            </div>
+
+            <!-- Tag 2 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Printer class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Impresión</span>
+            </div>
+
+            <!-- Tag 3 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Truck class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Logística</span>
+            </div>
+
+            <!-- Tag 4 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Send class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Transporte</span>
+            </div>
+
+            <!-- Tag 5 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Megaphone class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Difusión</span>
+            </div>
+
+            <!-- Tag 6 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <PenTool class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Materiales</span>
+            </div>
+
+            <!-- Tag 7 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Gift class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Regalos</span>
+            </div>
+
+            <!-- Tag 8 -->
+            <div class="px-5 py-3.5 rounded-full border border-slate-200 bg-white hover:border-[#A65F4C]/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2.5 cursor-default select-none shadow-[0_2px_8px_-3px_rgba(0,0,0,0.05)] group">
+              <div class="text-slate-400 group-hover:text-[#A65F4C] transition-colors duration-300">
+                <Users class="w-5 h-5" />
+              </div>
+              <span class="text-base font-bold text-slate-700 group-hover:text-slate-900 transition-colors">Acompañamiento</span>
+            </div>
+          </div>
+
+          <!-- Placeholder de Logos Futuros -->
+          <div class="mt-8 border-t border-[#A65F4C]/10 pt-16">
+            <p class="text-xs uppercase tracking-widest text-slate-400 font-extrabold mb-10">Futuros logos de marcas aliadas</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-40">
+              
+              <!-- Shape 1: Circular -->
+              <div class="w-24 h-24 rounded-full border-2 border-dashed border-slate-300 flex items-center justify-center hover:scale-105 hover:border-[#A65F4C]/50 hover:opacity-100 transition-all duration-300 group cursor-help" title="Espacio para logo circular">
+                <div class="w-12 h-12 rounded-full border border-dotted border-slate-300 flex items-center justify-center text-slate-300 group-hover:text-[#A65F4C] group-hover:border-[#A65F4C]/30 transition-colors">
+                  <Sparkles class="w-5 h-5" />
+                </div>
+              </div>
+
+              <!-- Shape 2: Pill -->
+              <div class="w-36 h-14 rounded-full border-2 border-dashed border-slate-300 flex items-center justify-center hover:scale-105 hover:border-[#A65F4C]/50 hover:opacity-100 transition-all duration-300 group cursor-help" title="Espacio para logo alargado">
+                <div class="w-20 h-6 rounded-full border border-dotted border-slate-300 flex items-center justify-center text-slate-300 group-hover:text-[#A65F4C] group-hover:border-[#A65F4C]/30 transition-colors">
+                  <span class="text-[9px] font-mono tracking-wider font-extrabold uppercase">LOGOTIPO</span>
+                </div>
+              </div>
+
+              <!-- Shape 3: Rounded Square (rotated) -->
+              <div class="w-20 h-20 rounded-2xl border-2 border-dashed border-slate-300 flex items-center justify-center hover:scale-105 hover:border-[#A65F4C]/50 hover:opacity-100 transition-all duration-300 rotate-12 group cursor-help" title="Espacio para logo cuadrado">
+                <div class="w-10 h-10 rounded-xl border border-dotted border-slate-300 flex items-center justify-center text-slate-300 -rotate-12 group-hover:text-[#A65F4C] group-hover:border-[#A65F4C]/30 transition-colors">
+                  <Heart class="w-5 h-5" />
+                </div>
+              </div>
+
+              <!-- Shape 4: Hexagonal / Rounded Hex -->
+              <div class="w-28 h-16 rounded-[1.5rem] border-2 border-dashed border-slate-300 flex items-center justify-center hover:scale-105 hover:border-[#A65F4C]/50 hover:opacity-100 transition-all duration-300 group cursor-help" title="Espacio para logo poligonal">
+                <div class="w-16 h-8 rounded-lg border border-dotted border-slate-300 flex items-center justify-center text-slate-300 group-hover:text-[#A65F4C] group-hover:border-[#A65F4C]/30 transition-colors">
+                  <Building class="w-5 h-5" />
+                </div>
+              </div>
+
+              <!-- Shape 5: Card shape -->
+              <div class="w-32 h-16 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center hover:scale-105 hover:border-[#A65F4C]/50 hover:opacity-100 transition-all duration-300 group cursor-help" title="Espacio para logo rectangular">
+                <div class="w-24 h-8 border border-dotted border-slate-300 flex items-center justify-center text-slate-300 group-hover:text-[#A65F4C] group-hover:border-[#A65F4C]/30 transition-colors">
+                  <span class="text-[9px] font-mono tracking-wider font-extrabold uppercase">EMPRESA</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
       <!-- --- 5. Final Call to Action --- -->
-      <section class="py-24 px-6 relative bg-white" id="formas-de-participar">
-        <div class="container mx-auto">
+      <section class="py-24 relative bg-white" id="formas-de-participar">
+        <div class="container mx-auto px-6 max-w-7xl">
           <div id="seccion-registro" class="bg-[#A65F4C] rounded-[3rem] p-8 md:p-24 text-center relative overflow-hidden">
             <!-- Background Decorations inside the CTA -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
@@ -865,7 +1004,7 @@ const valores = [
 
       <!-- --- Footer --- -->
       <footer class="bg-[#FCF6F8] border-t border-slate-100 py-12">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-6 max-w-7xl text-center">
           <div class="flex items-center justify-center gap-2 mb-6">
             <div class="bg-transparent flex items-center justify-center">
               <Image src="/images/logo-horizontal.png" width={336} height={84} alt="Logo de Puentes de Papel" class="w-84 object-cover mix-blend-multiply" />
@@ -877,5 +1016,4 @@ const valores = [
         </div>
       </footer>
     </div>
-  </body>
-</html>
+</BaseLayout>

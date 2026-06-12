@@ -1,0 +1,17 @@
+---
+import { ArrowLeft } from 'lucide-astro';
+
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href = "/", class: className = "" } = Astro.props;
+---
+
+<header class={`container mx-auto px-6 py-8 ${className}`}>
+  <a href={href} class="inline-flex items-center gap-2 text-[#A65F4C] hover:text-[#DD8574] font-bold text-lg transition-colors group">
+    <ArrowLeft class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
+    Volver al inicio
+  </a>
+</header>

@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: URL | string;
+  ogImage?: string;
+  showScrollProgress?: boolean;
+  showAnimations?: boolean;
+  themeColor?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalURL,
+  ogImage,
+  showScrollProgress = false,
+  showAnimations = false,
+  themeColor = "#A65F4C"
+} = Astro.props;
+
+const actualCanonicalURL = canonicalURL || new URL(Astro.url.pathname, Astro.site || 'https://puentesdepapel.munayruray.com');
+const actualOgImage = ogImage || '/images/logo.webp';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={actualCanonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={actualCanonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={actualOgImage} />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={actualCanonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={actualOgImage} />
+
+    <!-- SEO adicional -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content={themeColor} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/images/logo.webp" />
+
+    <!-- Import Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    {showScrollProgress && (
+      <script is:inline>
+        if (typeof window !== 'undefined') {
+          window.addEventListener('DOMContentLoaded', () => {
+            const progress = document.getElementById('scroll-progress');
+            window.addEventListener('scroll', () => {
+              const winScroll = document.documentElement.scrollTop;
+              const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+              const scrolled = winScroll / height;
+              if (progress) {
+                progress.style.transform = `scaleX(${scrolled})`;
+              }
+            });
+          });
+        }
+      </script>
+    )}
+
+    {showAnimations && (
+      <script is:inline>
+        if (typeof window !== 'undefined') {
+          window.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('sr-visible');
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              {
+                threshold: 0.15,
+              }
+            );
+
+            document
+              .querySelectorAll('.sr-fade-up, .sr-fade-up-delayed, .sr-stagger-item')
+              .forEach((el) => observer.observe(el));
+          });
+        }
+      </script>
+    )}
+  </head>
+
+  <body>
+    {showScrollProgress && (
+      <div class="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#A65F4C] via-[#DD8574] to-[#F2EADD] z-50 origin-left scale-x-0 transition-transform duration-75" id="scroll-progress"></div>
+    )}
+
+    <slot />
+  </body>
+</html>

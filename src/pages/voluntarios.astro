@@ -1,38 +1,18 @@
 ---
-import '../styles/global.css';
-import { ArrowLeft, Heart, Send, Sparkles, Clock, PenTool, Check } from 'lucide-astro';
+import BaseLayout from '../components/BaseLayout.astro';
+import BackButton from '../components/BackButton.astro';
+import FormCard from '../components/FormCard.astro';
+import { Heart, Send, Sparkles, Check } from 'lucide-astro';
 
 const title = 'Unirte como Voluntario/a - Puentes de Papel';
 const description = 'Regala tu tiempo y tus palabras. Inscríbete en Puentes de Papel para comenzar un intercambio mensual de cartas y acompañamiento con un adulto mayor.';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#A65F4C" />
-    
-    <!-- Import Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  </head>
-
-  <body class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen" style="font-family: 'Nunito', sans-serif;">
+<BaseLayout title={title} description={description}>
+  <div class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen">
     
     <!-- Top Navigation / Back button -->
-    <header class="container mx-auto px-6 py-8">
-      <a href="/" class="inline-flex items-center gap-2 text-[#A65F4C] hover:text-[#DD8574] font-bold text-lg transition-colors group">
-        <ArrowLeft class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
-        Volver al inicio
-      </a>
-    </header>
+    <BackButton />
 
     <main class="container mx-auto px-6 pb-24 max-w-3xl">
       <!-- Page Header -->
@@ -43,15 +23,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">
           Quiero ser voluntario/a
         </h1>
-        <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+        <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-light">
           Tus palabras tienen el poder de abrigar un corazón. Completa esta breve ficha para ayudarnos a encontrar tu match intergeneracional ideal.
         </p>
       </div>
 
       <!-- Form Card Container -->
-      <div class="bg-white rounded-[2.5rem] p-5 pt-8 md:p-12 shadow-sm border border-slate-100/80 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#A65F4C] to-[#DD8574]"></div>
-
+      <FormCard>
         <!-- Progress Steps -->
         <div id="progress-container" class="flex justify-between items-center mb-12 relative max-w-md mx-auto">
           <!-- Connector line -->
@@ -188,7 +166,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             </div>
 
             <div>
-              <label for="vinculo" class="block text-slate-700 font-bold mb-3">¿Qué tipo de vínculo te gustaría generar? *</label>
+              <span class="block text-slate-700 font-bold mb-3">¿Qué tipo de vínculo te gustaría generar? *</span>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <label class="flex items-center gap-3 bg-slate-50 hover:bg-[#F2EADD]/20 border border-slate-100 rounded-2xl px-5 py-4 cursor-pointer transition-colors">
                   <input type="radio" name="vinculo" value="Escucha y acompañamiento" required class="w-5 h-5 text-[#A65F4C] focus:ring-[#A65F4C]" />
@@ -321,7 +299,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
               ¡Gracias por tender este puente, <span id="success-name" class="text-[#A65F4C]"></span>!
             </h2>
-            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-light">
               Tu postulación se ha enviado con todo nuestro cariño. Hemos registrado tus intereses y disponibilidad para realizar el mejor emparejamiento posible.
             </p>
             <div class="p-6 bg-[#FCF9F5] border border-orange-100 rounded-3xl max-w-lg mx-auto text-left space-y-3 mt-8">
@@ -329,7 +307,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 <Sparkles class="w-5 h-5 text-amber-500 fill-amber-400" />
                 ¿Qué sigue ahora?
               </h4>
-              <p class="text-slate-600 text-base leading-relaxed">
+              <p class="text-slate-600 text-base leading-relaxed font-light">
                 <strong>Valentina Gómez</strong>, nuestra Coordinadora de Acompañamiento, revisará tu ficha y se pondrá en contacto contigo mediante WhatsApp o correo electrónico para coordinar tu breve inducción inicial. ¡Estamos felices de tenerte!
               </p>
             </div>
@@ -342,7 +320,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </div>
         </div>
 
-      </div>
+      </FormCard>
     </main>
 
     <!-- Simple client-side controller for step wizard and success message -->
@@ -379,11 +357,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }
 
         const updateProgress = () => {
-          // Progress bar percentage
           const percent = (currentStepIdx / (steps.length - 1)) * 100;
           progressBar.style.width = `${percent}%`;
 
-          // Nodes styles
           progressNodes.forEach((node, idx) => {
             if (idx < currentStepIdx) {
               node.className = 'w-10 h-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center shadow-md transition-all duration-300';
@@ -446,7 +422,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               updateProgress();
               window.scrollTo({ top: 200, behavior: 'smooth' });
             } else {
-              // Highlight missing fields
               const firstInvalid = steps[currentStepIdx].querySelector('.border-rose-400, .ring-rose-300');
               if (firstInvalid) {
                 firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -470,7 +445,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           if (validateStep(currentStepIdx)) {
             const nombreVal = document.getElementById('nombre').value;
             
-            // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
@@ -482,11 +456,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               Enviando...
             `;
 
-            // Gather all form data
             const formData = new FormData(form);
             const fields = {};
             
-            // For multiple checkboxes (like 'vinculo'), we keep track of values as an array
             for (const [key, value] of formData.entries()) {
               if (key === 'aceptacion') continue;
               
@@ -500,7 +472,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               }
             }
 
-            // Handle single-choice vinculo radios
             const selectedVinculo = form.querySelector('input[name="vinculo"]:checked');
             if (selectedVinculo) {
               if (selectedVinculo.value === 'Otro') {
@@ -511,7 +482,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               }
             }
 
-            // Format fechaNacimiento to LatAm format (dd/mm/yyyy)
             if (fields['fechaNacimiento']) {
               const parts = fields['fechaNacimiento'].split('-');
               if (parts.length === 3) {
@@ -539,22 +509,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 body: JSON.stringify(payload)
               });
 
-              // Dado que usamos 'no-cors' para evitar bloqueos del navegador (como Brave Shields),
-              // no podemos leer el JSON de respuesta. Si el fetch no arrojó un error de red, asumimos éxito.
               document.getElementById('progress-container').classList.add('hidden');
               form.classList.add('hidden');
               
-              // Set name in success view
               document.getElementById('success-name').innerText = nombreVal;
-              
-              // Show success view
               successView.classList.remove('hidden');
               window.scrollTo({ top: 150, behavior: 'smooth' });
             } catch (err) {
               console.error('Error al enviar:', err);
               alert('Error al enviar el formulario: ' + err.message);
               
-              // Restore button state
               submitBtn.disabled = false;
               submitBtn.innerHTML = originalBtnHtml;
             }
@@ -562,5 +526,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         });
       });
     </script>
-  </body>
-</html>
+  </div>
+</BaseLayout>
