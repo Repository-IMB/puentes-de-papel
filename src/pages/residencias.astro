@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import BackButton from '../components/BackButton.astro';
+import FormCard from '../components/FormCard.astro';
+import { Building, Send, Sparkles, Check, Heart } from 'lucide-astro';
+
+const title = 'Inscribir una Residencia - Puentes de Papel';
+const description = 'Inscribe a tu residencia u hogar de adultos mayores en el programa Puentes de Papel para comenzar un enriquecedor intercambio epistolar intergeneracional.';
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="bg-[#FDFBF7] text-slate-800 font-sans min-h-screen">
+    
+    <!-- Top Navigation / Back button -->
+    <BackButton />
+
+    <main class="container mx-auto px-6 pb-24 max-w-3xl">
+      <!-- Page Header -->
+      <div class="text-center mb-12">
+        <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-6 text-amber-600 shadow-sm animate-fade-slide-up">
+          <Building class="w-8 h-8" />
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+          Formulario de inscripción para residencias y centros
+        </h1>
+        <div class="space-y-4 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
+          <p class="font-bold text-slate-700 text-lg">
+            Gracias por su interés en formar parte de Puentes de Papel 💛
+          </p>
+          <p>
+            Este formulario nos permite conocer un poco más sobre la residencia para poder empezar a trabajar juntos. La propuesta busca generar un espacio de intercambio de cartas entre personas mayores y voluntarios, promoviendo vínculos sencillos, respetuosos y significativos. 💌
+          </p>
+          <p class="text-sm text-slate-500 font-medium">
+            La información solicitada es breve y nos ayudará a organizar mejor la implementación del programa. Ante cualquier duda o consulta, estamos a disposición para acompañarlos en el proceso:
+            <span class="block mt-1.5 font-bold text-slate-700 text-base">Dana ☎️ : +54 9 3518 68-2293</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Form Card Container -->
+      <FormCard>
+        <!-- Progress Steps -->
+        <div id="progress-container" class="flex justify-between items-center mb-12 relative max-w-xs mx-auto">
+          <!-- Connector line -->
+          <div class="absolute left-0 right-0 top-1/2 h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+          <div id="progress-bar" class="absolute left-0 top-1/2 h-0.5 bg-[#A65F4C] -translate-y-1/2 z-0 transition-all duration-300" style="width: 0%;"></div>
+
+          <!-- Step 1 -->
+          <div class="step-node relative z-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#A65F4C] text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-[#F2EADD]">1</div>
+            <span class="text-xs font-bold text-[#A65F4C] mt-2">Institución</span>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-node relative z-10 flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-white text-slate-400 border-2 border-slate-200 font-bold flex items-center justify-center transition-all duration-300">2</div>
+            <span class="text-xs font-bold text-slate-400 mt-2">Contacto</span>
+          </div>
+        </div>
+
+        <!-- The Form -->
+        <form id="form-residencias" class="space-y-8" data-script-url={import.meta.env.PUBLIC_APPS_SCRIPT_URL}>
+          
+          <!-- STEP 1: Datos de la Institución -->
+          <div id="step-1" class="form-step space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <span class="text-[#A65F4C]">1.</span> Datos de la Institución
+            </h2>
+
+            <div>
+              <label for="nombreResidencia" class="block text-slate-700 font-bold mb-2">Nombre de la residencia / centro *</label>
+              <input type="text" id="nombreResidencia" name="nombreResidencia" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Nombre de la institución" />
+            </div>
+
+            <div>
+              <label for="direccion" class="block text-slate-700 font-bold mb-2">Dirección *</label>
+              <input type="text" id="direccion" name="direccion" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Calle y número de la sede" />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="barrio" class="block text-slate-700 font-bold mb-2">Barrio / Zona *</label>
+                <input type="text" id="barrio" name="barrio" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Barrio o zona del centro" />
+              </div>
+              
+              <div>
+                <label for="ciudad" class="block text-slate-700 font-bold mb-2">Ciudad *</label>
+                <input type="text" id="ciudad" name="ciudad" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ciudad donde se ubica" />
+              </div>
+            </div>
+
+            <div class="pt-6 flex justify-end">
+              <button type="button" class="btn-next w-full sm:w-auto bg-[#A65F4C] text-white font-bold px-8 py-4 rounded-full hover:bg-[#DD8574] hover:-translate-y-0.5 transition-all cursor-pointer shadow-sm">
+                Siguiente paso
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Datos de Contacto y Confirmación -->
+          <div id="step-2" class="form-step hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+              <span class="text-[#A65F4C]">2.</span> Contacto y Confirmación
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="nombreContacto" class="block text-slate-700 font-bold mb-2">Nombre y apellido de contacto *</label>
+                <input type="text" id="nombreContacto" name="nombreContacto" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Nombre completo del referente" />
+              </div>
+              
+              <div>
+                <label for="rolContacto" class="block text-slate-700 font-bold mb-2">Rol en la institución *</label>
+                <input type="text" id="rolContacto" name="rolContacto" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: Director, Trabajador Social, etc." />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="telefono" class="block text-slate-700 font-bold mb-2">Teléfono de contacto *</label>
+                <input type="tel" id="telefono" name="telefono" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="Ej: +54 9 351..." />
+              </div>
+
+              <div>
+                <label for="correo" class="block text-slate-700 font-bold mb-2">Mail de contacto *</label>
+                <input type="email" id="correo" name="correo" required class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800" placeholder="correo@institucion.com" />
+              </div>
+            </div>
+
+            <div>
+              <label for="comentarios" class="block text-slate-700 font-bold mb-2">¿Hay algo que les gustaría comentarnos o que consideren importante para participar? <span class="text-slate-400 font-medium">(Opcional)</span></label>
+              <textarea id="comentarios" name="comentarios" rows="4" class="w-full bg-slate-50 border-2 border-transparent rounded-2xl px-5 py-3.5 focus:bg-white focus:border-[#A65F4C] focus:outline-none transition-all font-medium text-slate-800 resize-none" placeholder="Cualquier información adicional que consideren relevante..."></textarea>
+            </div>
+
+            <div class="pt-4">
+              <label class="flex items-start gap-3 bg-[#FCF9F5] border border-orange-100 rounded-2xl p-5 cursor-pointer hover:bg-[#F2EADD]/20 transition-colors">
+                <input type="checkbox" name="aceptacion" required class="w-5 h-5 rounded text-[#A65F4C] focus:ring-[#A65F4C] mt-0.5" />
+                <span class="text-sm font-semibold text-slate-700 leading-relaxed">
+                  Confirmo que la institución está interesada en ser parte de Puentes de Papel *
+                </span>
+              </label>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between gap-4">
+              <button type="button" class="btn-prev border-2 border-slate-200 text-slate-500 font-bold px-8 py-4 rounded-full hover:bg-slate-50 transition-all cursor-pointer">
+                Atrás
+              </button>
+              <button type="submit" class="bg-amber-400 text-[#3B1E16] font-bold px-10 py-4.5 rounded-full hover:bg-amber-300 hover:-translate-y-0.5 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer">
+                Enviar inscripción
+                <Send class="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success View (Hidden initially) -->
+        <div id="success-view" class="hidden text-center py-12 space-y-8 animate-fade-in">
+          <div class="w-24 h-24 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-500 relative">
+            <div class="absolute inset-0 rounded-full bg-emerald-200 animate-ping opacity-45"></div>
+            <Check class="w-12 h-12 relative z-10" />
+          </div>
+          
+          <div class="space-y-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
+              ¡Gracias por sumarse a Puentes de Papel!
+            </h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto leading-relaxed font-light">
+              La postulación de <span id="success-name" class="font-extrabold text-[#A65F4C]"></span> se ha enviado correctamente.
+            </p>
+            <div class="p-6 bg-[#FCF9F5] border border-orange-100 rounded-3xl max-w-lg mx-auto text-left space-y-3 mt-8">
+              <h4 class="font-bold text-[#A65F4C] text-lg flex items-center gap-2">
+                <Sparkles class="w-5 h-5 text-amber-500 fill-amber-400" />
+                ¿Qué sigue ahora?
+              </h4>
+              <p class="text-slate-600 text-base leading-relaxed font-light">
+                Nuestra coordinadora general, **Dana**, revisará la ficha y se comunicará vía WhatsApp, teléfono o correo electrónico para coordinar los detalles del intercambio epistolar y la capacitación inicial si fuese necesaria. ¡Estamos muy entusiasmados por trabajar juntos!
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-8">
+            <a href="/" class="inline-flex bg-slate-100 hover:bg-[#F2EADD]/40 hover:text-[#A65F4C] text-slate-700 font-bold px-8 py-4 rounded-full transition-all shadow-sm">
+              Volver al inicio
+            </a>
+          </div>
+        </div>
+
+      </FormCard>
+    </main>
+
+    <!-- Simple client-side controller for step wizard and success message -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('form-residencias');
+        const steps = Array.from(document.querySelectorAll('.form-step'));
+        const nextButtons = document.querySelectorAll('.btn-next');
+        const prevButtons = document.querySelectorAll('.btn-prev');
+        const successView = document.getElementById('success-view');
+        const progressNodes = document.querySelectorAll('.step-node div');
+        const progressLabels = document.querySelectorAll('.step-node span');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentStepIdx = 0;
+
+        const updateProgress = () => {
+          // Calculate step percentage
+          const pct = (currentStepIdx / (steps.length - 1)) * 100;
+          if (progressBar) progressBar.style.width = `${pct}%`;
+
+          progressNodes.forEach((node, idx) => {
+            if (idx < currentStepIdx) {
+              node.innerHTML = '✓';
+              node.className = 'w-10 h-10 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center shadow-md transition-all duration-300';
+              progressLabels[idx].className = 'text-xs font-bold text-emerald-500 mt-2';
+            } else if (idx === currentStepIdx) {
+              node.innerHTML = String(idx + 1);
+              node.className = 'w-10 h-10 rounded-full bg-[#A65F4C] text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-[#F2EADD]';
+              progressLabels[idx].className = 'text-xs font-bold text-[#A65F4C] mt-2';
+            } else {
+              node.innerHTML = String(idx + 1);
+              node.className = 'w-10 h-10 rounded-full bg-white text-slate-400 border-2 border-slate-200 font-bold flex items-center justify-center transition-all duration-300';
+              progressLabels[idx].className = 'text-xs font-bold text-slate-400 mt-2';
+            }
+          });
+        };
+
+        const validateStep = (stepIdx) => {
+          const stepEl = steps[stepIdx];
+          const requiredFields = Array.from(stepEl.querySelectorAll('[required]'));
+          let isValid = true;
+          
+          requiredFields.forEach(field => {
+            if (field.type === 'checkbox') {
+              if (!field.checked) {
+                isValid = false;
+                field.classList.add('ring-2', 'ring-rose-300');
+              } else {
+                field.classList.remove('ring-2', 'ring-rose-300');
+              }
+            } else {
+              if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('border-rose-400');
+                field.classList.remove('border-transparent');
+              } else {
+                field.classList.remove('border-rose-400');
+                field.classList.add('border-transparent');
+              }
+            }
+          });
+          return isValid;
+        };
+
+        nextButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (validateStep(currentStepIdx)) {
+              steps[currentStepIdx].classList.add('hidden');
+              currentStepIdx++;
+              steps[currentStepIdx].classList.remove('hidden');
+              updateProgress();
+              window.scrollTo({ top: 200, behavior: 'smooth' });
+            } else {
+              const firstInvalid = steps[currentStepIdx].querySelector('.border-rose-400, .ring-rose-300');
+              if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }
+          });
+        });
+
+        prevButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            steps[currentStepIdx].classList.add('hidden');
+            currentStepIdx--;
+            steps[currentStepIdx].classList.remove('hidden');
+            updateProgress();
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+          });
+        });
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (validateStep(currentStepIdx)) {
+            const nombreResidenciaVal = document.getElementById('nombreResidencia').value;
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-[#3B1E16] inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            `;
+
+            const formData = new FormData(form);
+            const fields = {};
+            
+            for (const [key, value] of formData.entries()) {
+              if (key === 'aceptacion') continue;
+              fields[key] = value;
+            }
+
+            const payload = {
+              sheetName: 'Residencias',
+              fields: fields
+            };
+
+            try {
+              const url = form.dataset.scriptUrl;
+              if (!url) {
+                throw new Error('La URL de Google Apps Script no está configurada. Por favor, crea un archivo .env con PUBLIC_APPS_SCRIPT_URL o configúrala en el formulario.');
+              }
+
+              await fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                  'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(payload)
+              });
+
+              document.getElementById('progress-container').classList.add('hidden');
+              form.classList.add('hidden');
+              
+              document.getElementById('success-name').innerText = nombreResidenciaVal;
+              successView.classList.remove('hidden');
+              window.scrollTo({ top: 150, behavior: 'smooth' });
+            } catch (err) {
+              console.error('Error al enviar:', err);
+              alert('Error al enviar el formulario: ' + err.message);
+              
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnHtml;
+            }
+          }
+        });
+      });
+    </script>
+  </div>
+</BaseLayout>
