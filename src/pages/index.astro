@@ -731,10 +731,10 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                 </div>
               </div>
 
-              <!-- Barra de Progreso y Botón de CTA -->
+              <!-- Barra de Progreso y Datos de Transferencia -->
               <div class="lg:col-span-5 flex flex-col items-stretch">
                 <!-- Widget de Progreso -->
-                <div class="mb-8 p-8 bg-white border border-[#A65F4C]/10 rounded-3xl text-left shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="mb-6 p-8 bg-white border border-[#A65F4C]/10 rounded-3xl text-left shadow-sm hover:shadow-md transition-shadow duration-300">
                   <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 flex justify-between items-center">
                     <span>Progreso de la campaña</span>
                     <span class="text-[#A65F4C] font-extrabold">{percentage}% alcanzado</span>
@@ -756,6 +756,57 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                     </div>
                     <div class="text-sm text-slate-500 font-semibold sm:text-right">
                       Meta objetivo: <span class="text-slate-800 font-bold">{formattedTarget}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Datos de Transferencia Bancaria -->
+                <div class="mb-6 p-6 bg-amber-50/40 border border-amber-100/80 rounded-3xl text-left w-full shadow-sm animate-fade-slide-up" style="animation-delay: 200ms;">
+                  <p class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <CreditCard class="w-4 h-4 text-[#A65F4C]" />
+                    Datos para transferencia bancaria:
+                  </p>
+                  
+                  <div class="space-y-2.5 text-sm text-slate-700">
+                    <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+                      <span class="text-slate-500 font-medium">Banco:</span>
+                      <span class="font-bold text-slate-800">Brubank</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+                      <span class="text-slate-500 font-medium">Titular:</span>
+                      <span class="font-bold text-slate-800">DANA PAULA GRACIANO</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+                      <span class="text-slate-500 font-medium">CUIT:</span>
+                      <span class="font-bold text-slate-800">27-40249261-4</span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+                      <span class="text-slate-500 font-medium">Nº de Cuenta:</span>
+                      <span class="font-bold text-slate-800">1304886721001</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-slate-200/60 pb-1.5">
+                      <span class="text-slate-500 font-medium">Alias:</span>
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-800 font-mono select-all">puentes.de.papel</span>
+                        <button 
+                          class="text-xs font-bold text-[#A65F4C] hover:text-[#DD8574] border border-[#A65F4C]/20 px-2 py-0.5 rounded bg-white transition-colors cursor-pointer"
+                          onclick="navigator.clipboard.writeText('puentes.de.papel').then(() => alert('Alias copiado: puentes.de.papel'))"
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">CBU:</span>
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-slate-800 font-mono text-xs truncate max-w-[130px] select-all" title="1430001713048867210013">1430001713048867210013</span>
+                        <button 
+                          class="text-xs font-bold text-[#A65F4C] hover:text-[#DD8574] border border-[#A65F4C]/20 px-2 py-0.5 rounded bg-white transition-colors cursor-pointer"
+                          onclick="navigator.clipboard.writeText('1430001713048867210013').then(() => alert('CBU copiado: 1430001713048867210013'))"
+                        >
+                          Copiar
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
