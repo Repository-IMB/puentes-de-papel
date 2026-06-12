@@ -790,7 +790,7 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                         <span class="font-bold text-slate-800 font-mono select-all">puentes.de.papel</span>
                         <button 
                           class="text-xs font-bold text-[#A65F4C] hover:text-[#DD8574] border border-[#A65F4C]/20 px-2 py-0.5 rounded bg-white transition-colors cursor-pointer"
-                          onclick="navigator.clipboard.writeText('puentes.de.papel').then(() => alert('Alias copiado: puentes.de.papel'))"
+                          onclick="const btn=this; navigator.clipboard.writeText('puentes.de.papel').then(() => { btn.innerText = '¡Copiado!'; btn.classList.add('bg-green-50', 'text-green-600', 'border-green-300'); btn.classList.remove('text-[#A65F4C]', 'border-[#A65F4C]/20'); setTimeout(() => { btn.innerText = 'Copiar'; btn.classList.remove('bg-green-50', 'text-green-600', 'border-green-300'); btn.classList.add('text-[#A65F4C]', 'border-[#A65F4C]/20'); }, 2000); })"
                         >
                           Copiar
                         </button>
@@ -802,7 +802,7 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                         <span class="font-bold text-slate-800 font-mono text-xs truncate max-w-[130px] select-all" title="1430001713048867210013">1430001713048867210013</span>
                         <button 
                           class="text-xs font-bold text-[#A65F4C] hover:text-[#DD8574] border border-[#A65F4C]/20 px-2 py-0.5 rounded bg-white transition-colors cursor-pointer"
-                          onclick="navigator.clipboard.writeText('1430001713048867210013').then(() => alert('CBU copiado: 1430001713048867210013'))"
+                          onclick="const btn=this; navigator.clipboard.writeText('1430001713048867210013').then(() => { btn.innerText = '¡Copiado!'; btn.classList.add('bg-green-50', 'text-green-600', 'border-green-300'); btn.classList.remove('text-[#A65F4C]', 'border-[#A65F4C]/20'); setTimeout(() => { btn.innerText = 'Copiar'; btn.classList.remove('bg-green-50', 'text-green-600', 'border-green-300'); btn.classList.add('text-[#A65F4C]', 'border-[#A65F4C]/20'); }, 2000); })"
                         >
                           Copiar
                         </button>
