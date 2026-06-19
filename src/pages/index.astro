@@ -9,9 +9,11 @@ const description = 'Conectando generaciones a través de historias y memorias. 
 const ogImage = new URL('/images/puentes-de-papel-conversacion-parque-adulto-mayor-voluntaria.webp', Astro.site || 'https://puentesdepapel.munayruray.com');
 
 // Variables para la campaña de donación y metas
-const currentRaised = 2500000;
-const targetGoal = 10000000;
-const percentage = Math.round((currentRaised / targetGoal) * 100);
+const donationUrl = import.meta.env.PUBLIC_DONATION_URL || '#datos-transferencia';
+const isExternalDonation = donationUrl.startsWith('http');
+const currentRaised = Number(import.meta.env.PUBLIC_CURRENT_RAISED) || 0;
+const targetGoal = Number(import.meta.env.PUBLIC_TARGET_GOAL) || 10000000;
+const percentage = targetGoal > 0 ? Math.round((currentRaised / targetGoal) * 100) : 0;
 const formattedRaised = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(currentRaised);
 const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(targetGoal);
 ---
@@ -761,7 +763,7 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                 </div>
 
                 <!-- Datos de Transferencia Bancaria -->
-                <div class="mb-6 p-6 bg-amber-50/40 border border-amber-100/80 rounded-3xl text-left w-full shadow-sm animate-fade-slide-up" style="animation-delay: 200ms;">
+                <div id="datos-transferencia" class="mb-6 p-6 bg-amber-50/40 border border-amber-100/80 rounded-3xl text-left w-full shadow-sm scroll-mt-24 animate-fade-slide-up" style="animation-delay: 200ms;">
                   <p class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
                     <CreditCard class="w-4 h-4 text-[#A65F4C]" />
                     Datos para transferencia bancaria:
@@ -812,7 +814,9 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                 </div>
 
                 <a 
-                  href="mailto:hola@munayruray.com?subject=Quiero colaborar con la campaña ONG - Puentes de Papel" 
+                  href={donationUrl}
+                  target={isExternalDonation ? "_blank" : undefined}
+                  rel={isExternalDonation ? "noopener noreferrer" : undefined}
                   class="inline-flex items-center justify-center gap-3 bg-[#A65F4C] text-white hover:bg-[#DD8574] text-lg font-bold px-8 py-4 rounded-full hover:-translate-y-1 transition-all duration-300 shadow-md cursor-pointer btn-shine"
                 >
                   <span>Quiero colaborar</span>
@@ -884,7 +888,9 @@ const formattedTarget = new Intl.NumberFormat('es-AR', { style: 'currency', curr
                 </div>
 
                 <a 
-                  href="mailto:hola@munayruray.com?subject=Quiero ser embajador de Puentes de Papel" 
+                  href={donationUrl}
+                  target={isExternalDonation ? "_blank" : undefined}
+                  rel={isExternalDonation ? "noopener noreferrer" : undefined}
                   class="inline-flex items-center justify-center gap-3 bg-[#A65F4C] text-white hover:bg-[#DD8574] text-lg font-bold px-8 py-4 rounded-full hover:-translate-y-1 transition-all duration-300 shadow-md cursor-pointer btn-shine"
                 >
                   <span>Quiero ser embajador/a</span>
